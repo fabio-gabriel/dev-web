@@ -1,45 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
-:root {
-    --primary-color: #BF4408;
-    --secondary-color: #137BBA;
-    --text-color: #1A191B;
-}
-
-/* Default noto-serif class
-.noto-serif-<uniquifier> {
-  font-family: "Noto Serif", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
-*/
-
-.noto-serif-regular {
-    font-family: "Noto Serif", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.noto-serif-bold {
-    font-family: "Noto serif", serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.poppins-regular {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.poppins-bold {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
+@import url(defaults.css);
 
 .btn-banner {
     color: #fff;

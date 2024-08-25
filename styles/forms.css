@@ -1,41 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
-:root {
-    --primary-color: #BF4408;
-    --secondary-color: #137BBA;
-    --text-color: #1A191B;
-}
-
-.noto-serif-regular {
-    font-family: "Noto Serif", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.noto-serif-bold {
-    font-family: "Noto Serif", serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.poppins-regular {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.poppins-bold {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.btn-banner {
-    color: #fff;
-    background-color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-}
+@import url(defaults.css);
 
 .container-gray {
     background-color: #dddddd;
