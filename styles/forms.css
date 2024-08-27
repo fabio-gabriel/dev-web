@@ -52,10 +52,19 @@ button[type="submit"] {
 }
 
 .btn-primary {
-    background-color: #e63946;
-    border-color: #e63946;
+    background-color: #BF4408 !important;
+    border-color: #BF4408 !important;
+}
+
+.btn-primary:hover {
+    background-color: #A83D07 !important;
+    color: white;
 }
 
 .link-info {
-    color: #e63946
+    color: #BF4408 !important
+}
+
+.link-info:hover {
+    color: #A83D07 !important
 }
