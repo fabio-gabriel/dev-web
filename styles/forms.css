@@ -1,9 +1,5 @@
 @import url(defaults.css);
 
-a:hover {
-    text-decoration: underline;
-}
-
 .container-gray {
     background-color: #dddddd;
     padding: 30px;
@@ -11,6 +7,10 @@ a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.container-gray a:hover {
+    text-decoration: underline;
 }
 
 .form-container {
@@ -50,16 +50,6 @@ button[type="submit"] {
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
-}
-
-.btn-primary {
-    background-color: #BF4408 !important;
-    border-color: #BF4408 !important;
-}
-
-.btn-primary:hover {
-    background-color: #A83D07 !important;
-    color: white;
 }
 
 .link-info {

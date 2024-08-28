@@ -101,3 +101,13 @@ a:hover {
 .btn-custom:hover {
     background-color: #A83D07 !important;
 }
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: #A83D07 !important;
+    color: white;
+}
