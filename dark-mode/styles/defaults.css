@@ -12,6 +12,24 @@ body {
     color: var(--text-color)
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit;
+}
+
+.navbar a {
+    color: var(--text-color);
+}
+
+.navbar a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
 /* Default noto-serif class
 .noto-serif-<uniquifier> {
   font-family: "Noto Serif", serif;

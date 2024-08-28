@@ -1,0 +1,24 @@
+@import url(defaults.css);
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: black;
+    color: white
+}
+
+
+button[type="submit"] {
+    background-color: #e63946;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
