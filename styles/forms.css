@@ -1,19 +1,24 @@
 @import url(defaults.css);
 
+a:hover {
+    text-decoration: underline;
+}
+
 .container-gray {
     background-color: #dddddd;
     padding: 30px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
 .form-container {
     background-color: #fff;
     padding: 20px;
-    width: 80%; 
-    max-width: 800px;
+    width: 800px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 label {
