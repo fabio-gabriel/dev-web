@@ -1,35 +1,50 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
 :root {
     --primary-color: #BF4408;
     --secondary-color: #137BBA;
     --text-color: #1A191B;
     --bg-alternative: #E6E6E6;
+    --bg-color: #FBFAF9;
+    --link-color: inherit;
+    --link-hover: inherit;
+    --btn-text-color: #fff;
+    --btn-hover-bg: #A83D07;
+    --card-border: #000;
+}
+
+.dark-mode {
+    --primary-color: #F0F0F0;
+    --secondary-color: #137BBA;
+    --text-color: #ffffff;
+    --bg-alternative: #636363;
+    --bg-color: #000000;
+    --link-color: inherit;
+    --link-hover: inherit;
+    --btn-text-color: #000;
+    --btn-hover-bg: #9b9b9b;
+    --card-border: #fff;
 }
 
 body {
-    background-color: #FBFAF9 !important;
+    background-color: var(--bg-color) !important;
+    color: var(--text-color);
 }
 
 a {
-    color: inherit;
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
-    color: inherit;
+    color: var(--link-hover);
 }
 
-/* Default noto-serif class
-.noto-serif-<uniquifier> {
-  font-family: "Noto Serif", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+.navbar a {
+    color: var(--text-color);
 }
-*/
+
+.navbar a:hover {
+    text-decoration: underline;
+}
 
 .noto-serif-regular {
     font-family: "Noto Serif", serif;
@@ -38,7 +53,7 @@ a:hover {
 }
 
 .noto-serif-bold {
-    font-family: "Noto serif", serif;
+    font-family: "Noto Serif", serif;
     font-weight: 700;
     font-style: normal;
 }
@@ -79,35 +94,35 @@ a:hover {
 .card {
     min-width: 350px;
     max-width: 420px;
+    border-color: var(--card-border);
 }
 
 .card-link:hover {
     filter: brightness(90%);
-    -webkit-filter: brightness(90%);
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
 .btn-custom {
-    color: #fff !important;
+    color: var(--btn-text-color) !important;
     background-color: var(--primary-color) !important;
-    padding: .5rem 1.5rem !important;
+    padding: 0.5rem 1.5rem !important;
     border-radius: 20px !important;
 }
 
 .btn-custom:hover {
-    background-color: #A83D07 !important;
+    background-color: var(--btn-hover-bg) !important;
 }
 
-.btn-primary {
-    background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
+.dark-mode .dropdown-menu {
+    background-color: #333 !important;
+    color: #ffffff !important;
 }
 
-.btn-primary:hover {
-    background-color: #A83D07 !important;
-    color: white;
+.dark-mode .dropdown-item {
+    color: #ffffff !important;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: #444 !important;
+    color: #ffffff !important;
 }

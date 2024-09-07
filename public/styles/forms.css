@@ -1,7 +1,7 @@
 @import url(defaults.css);
 
 .container-gray {
-    background-color: #dddddd;
+    background-color: var(--bg-alternative);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -14,32 +14,41 @@
 }
 
 .form-container {
-    background-color: #fff;
+    background-color: var(--bg-color);
     padding: 20px;
     width: 800px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.form-group {
+    margin-bottom: 15px;
+}
+
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 input[type="text"],
 input[type="file"],
 input[type="datetime-local"],
 textarea,
-select {
-    width: 80%;
+select,
+.form-select,
+.form-control,
+.custom-area {
+    width: 100%;
     padding: 10px;
     font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
-
 
 button[type="submit"] {
     background-color: #e63946;
@@ -52,10 +61,23 @@ button[type="submit"] {
     font-size: 16px;
 }
 
+button[type="submit"]:hover {
+    background-color: var(--btn-hover-bg);
+}
+
+.btn-primary {
+    color: var(--btn-text-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover-bg) !important;
+}
+
 .link-info {
-    color: #BF4408 !important
+    color: var(--link-color) !important;
 }
 
 .link-info:hover {
-    color: #A83D07 !important
+    color: var(--link-hover) !important;
 }

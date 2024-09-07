@@ -24,9 +24,27 @@
         <a class="nav-link text-dark px-4" href="leiloes.html">Leilões</a>
         <a class="nav-link text-dark px-4" href="seusLeiloes.html">Vender</a>
       </div>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Tema
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
+          <li><a class="dropdown-item" href="#" id="light-theme">Tema Claro</a></li>
+          <li><a class="dropdown-item" href="#" id="dark-theme">Tema Escuro</a></li>
+        </ul>
+      </div>
+
       <div class="d-flex justify-content-center w-auto px-4">
         <a class="btn btn-custom" href="login.html" role="button">Entrar/Cadastre-se</a>
       </div>
+
+      <div class="d-flex align-items-center px-4">
+        <button id="decrease-font" class="btn btn-light me-2">A -</button>
+        <button id="increase-font" class="btn btn-light">A +</button>
+    </div>
+
     </div>
   </nav>
 
@@ -181,7 +199,9 @@
       <p class="text-center text-body-secondary">&copy; Leilão Fácil</p>
     </footer>
   </div>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/scripts/bootstrap.bundle.min.js"></script>
+  <script src="scripts/trocarTema.js"></script>
+  <script src="scripts/fonte.js"></script>
 </body>
 
 </html>
