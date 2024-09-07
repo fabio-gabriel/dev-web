@@ -16,37 +16,7 @@
 </head>
 
 <body class="poppins-regular">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <!-- Full width container -->
-    <div class="container-fluid">
-      <div class="d-flex justify-content-center flex-grow-1">
-        <a class="nav-link text-dark px-4" href="index.html">Início</a>
-        <a class="nav-link text-dark px-4" href="leiloes.html">Leilões</a>
-        <a class="nav-link text-dark px-4" href="seusLeiloes.html">Vender</a>
-      </div>
-
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Tema
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeDropdown">
-          <li><a class="dropdown-item" href="#" id="light-theme">Tema Claro</a></li>
-          <li><a class="dropdown-item" href="#" id="dark-theme">Tema Escuro</a></li>
-        </ul>
-      </div>
-
-      <div class="d-flex justify-content-center w-auto px-4">
-        <a class="btn btn-custom" href="login.html" role="button">Entrar/Cadastre-se</a>
-      </div>
-
-      <div class="d-flex align-items-center px-4">
-        <button id="decrease-font" class="btn btn-light me-2">A -</button>
-        <button id="increase-font" class="btn btn-light">A +</button>
-    </div>
-
-    </div>
-  </nav>
+  <%- include('partials/header.ejs') %>
 
   <div class="d-flex flex-column noto-serif-bold text-center py-5">
     <h2 class="py-3">Seu sites de leilões descomplicado!</h2>
@@ -63,142 +33,19 @@
       <div class="row">
         <!-- Full width on mobile, third width on larger screens -->
         <div class="col-12 col-md-4 mb-4">
-          <a href="produto.html" class="card-link">
-            <div class="card p-2">
-              <img src="images/placeholder.jpg" class="card-img-crop" alt="Card Image 1">
-              <div class="container border py-2 my-3 px-2">
-                <div class="row">
-                  <div class="col-6 text-center border-end">
-                    Lance:
-                    <div class="bid-text">
-                      $10
-                    </div>
-                  </div>
-                  <div class="container col-6 text-center">
-                    Finaliza em:
-                    <div class="row">
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        D
-                      </div>
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        H
-                      </div>
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        M
-                      </div>
-                      <div class="col-3 g-0">
-                        <strong class="clock-number">00</strong><br>
-                        S
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <strong>Nome da listagem</strong>
-              <p class="card-text">Localização<br>Outra info</p>
-            </div>
-          </a>
+          <%- include('partials/card.ejs') %>
         </div>
         <div class="col-12 col-md-4 mb-4">
-          <a href="produto.html" class="card-link">
-            <div class="card p-2">
-              <img src="images/placeholder.jpg" class="card-img-crop" alt="Card Image 1">
-              <div class="container border py-2 my-3 px-2">
-                <div class="row">
-                  <div class="col-6 text-center border-end">
-                    Lance:
-                    <div class="bid-text">
-                      $10
-                    </div>
-                  </div>
-                  <div class="container col-6 text-center">
-                    Finaliza em:
-                    <div class="row">
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        D
-                      </div>
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        H
-                      </div>
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        M
-                      </div>
-                      <div class="col-3 g-0">
-                        <strong class="clock-number">00</strong><br>
-                        S
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <strong>Nome da listagem</strong>
-              <p class="card-text">Localização<br>Outra info</p>
-            </div>
-          </a>
+          <%- include('partials/card.ejs') %>
         </div>
         <div class="col-12 col-md-4 mb-4">
-          <a href="produto.html" class="card-link">
-            <div class="card p-2">
-              <img src="images/placeholder.jpg" class="card-img-crop" alt="Card Image 1">
-              <div class="container border py-2 my-3 px-2">
-                <div class="row">
-                  <div class="col-6 text-center border-end">
-                    Lance:
-                    <div class="bid-text">
-                      $10
-                    </div>
-                  </div>
-                  <div class="container col-6 text-center">
-                    Finaliza em:
-                    <div class="row">
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        D
-                      </div>
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        H
-                      </div>
-                      <div class="col-3 border-end g-0">
-                        <strong class="clock-number">00</strong><br>
-                        M
-                      </div>
-                      <div class="col-3 g-0">
-                        <strong class="clock-number">00</strong><br>
-                        S
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <strong>Nome da listagem</strong>
-              <p class="card-text">Localização<br>Outra info</p>
-            </div>
-          </a>
+          <%- include('partials/card.ejs') %>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="container">
-    <footer class="py-3 my-4">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Início</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Leilões</a></li>
-        <li class="nav-item"><a href="criarLeilao.html" class="nav-link px-2 text-body-secondary">Vender</a>
-        </li>
-        <li class="nav-item"><a href="login.html" class="nav-link px-2 text-body-secondary">Login/Cadastro</a>
-        </li>
-      </ul>
-      <p class="text-center text-body-secondary">&copy; Leilão Fácil</p>
-    </footer>
-  </div>
+  <%- include('partials/footer.ejs') %>
   <script src="/scripts/bootstrap.bundle.min.js"></script>
   <script src="scripts/trocarTema.js"></script>
   <script src="scripts/fonte.js"></script>
