@@ -1,0 +1,35 @@
+{
+    "id": 1,
+    "name": "LP Vinil - Led Zeppelin IV",
+    "highestBid": {
+      "value": 2500.00,
+      "account": "john_doe123",
+      "timestamp": "2024-09-09T15:30:00Z"
+    },
+    "conservation": "Used",
+    "description": "LP Led Zeppelin IV - Capa em ótimo estado, vinil com sinais de manuseio e desgastado com o uso",
+    "category": "Livros e Mídia",
+    "images": [
+      "/images/vase1.jpg",
+      "/images/vase2.jpg"
+    ],
+    "auctionDetails": {
+      "startDate": "2024-09-01T10:00:00Z",
+      "endDate": "2024-09-15T18:00:00Z",
+      "reservePrice": 1500.00
+    },
+    "seller": {
+      "account": "seller_456",
+      "contactInfo": {
+        "email": "seller@example.com",
+        "phone": "+1234567890"
+      }
+    },
+    "location": "New York, NY",
+    "tags": [
+      "vase",
+      "antique",
+      "Ming dynasty"
+    ]
+  }
+  
