@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Pimenta",
+        "username": "pimenta123",
+        "role": "admin",
+        "cpf": "00000000000",
+        "email": "joaopedropimenta@alu.ufc.br",
+        "password": "12345",
+        "deleted": "false"
+    },
+    {
+        "id": 2,
+        "name": "Seller Example",
+        "username": "seller_456",
+        "role": "user",
+        "cpf": "00000000001",
+        "email": "seller@example.com",
+        "password": "12345",
+        "deleted": "false"
+    }
+]
