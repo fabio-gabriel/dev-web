@@ -18,6 +18,10 @@
 <body class="poppins-regular">
   <%- include('partials/header.ejs') %>
 
+  <% auctions.forEach(auction => { %>
+    <h1><% auction.name %></h1>
+  <% }) %>
+
   <div class="d-flex flex-column noto-serif-bold text-center py-5">
     <h2 class="py-3">Seu sites de leilões descomplicado!</h2>
     <h3 class="py-3">Venda fácil, compre fácil!</h3>
