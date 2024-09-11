@@ -1,5 +1,4 @@
 const axios = require('axios').default
-const userDefiner = require('../user')
 const user = { id: 1, username: 'pimenta', role: 'admin' } // { id: 2, username: 'fabio', role: 'user' }
 
 class SeusLeiloesController{
