@@ -5,6 +5,7 @@ class HomeController{
 
   async index(req, res){
     const auction = Auction.where({deleted: "false"})
+    console.log(auction)
 
     let data = {
       auctions: auction

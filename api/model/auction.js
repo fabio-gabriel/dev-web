@@ -260,7 +260,7 @@ class AuctionItem{
       items_data = db.where('auctionDetails', auctionDetails);
     }
     if (seller) {
-      items_data = db.where('seller', seller);
+      items_data = db.where('seller.username', seller);
     }
     if (location) {
       items_data = db.where('location', location);

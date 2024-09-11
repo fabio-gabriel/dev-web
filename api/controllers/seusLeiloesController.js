@@ -5,8 +5,9 @@ class HomeController{
 
   async yourActionsJSON(req, res){
     const username = req.query.username;
-    const auctions = Auction.where('seller.username', username);
+    const auctions = Auction.where({seller: username});
     console.log(auctions)
+
     let data = {
       auctions: auctions
     }

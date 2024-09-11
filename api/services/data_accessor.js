@@ -27,19 +27,25 @@ class DataAccessor{
 
   where(key, value) {
     const keyParts = key.split('.');
-    console.log(key)
+    
+    console.log(key, value);
   
     let record = this.data.filter(element => {
-      let nestedValue = keyParts.reduce((obj, keyPart) => obj && obj[keyPart], element);
-      console.log(`Checking ${nestedValue} against ${value.username}`); // Log the comparison
-      return nestedValue && nestedValue.toLowerCase().includes(value.username.toLowerCase());
+      // If the keyParts length is 1, it's an unnested property
+      if (keyParts.length === 1) {
+        // Access the direct property
+        return element[key].toString().toLowerCase().includes(value.toLowerCase());
+      } else {
+        // Access nested properties
+        let nestedValue = keyParts.reduce((obj, keyPart) => obj && obj[keyPart], element);
+        return nestedValue && nestedValue.toString().toLowerCase().includes(value.toLowerCase());
+      }
     });
   
-    console.log("Filtered records:", record);
     return record;
   }
   
-
+  
   create(json){
     const existing_ids = this.data.map(({id})=>(id))
     let max_id = Math.max(...existing_ids)

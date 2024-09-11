@@ -32,11 +32,12 @@
     <div class="container">
       <div class="row">
         <!-- Full width on mobile, third width on larger screens -->
-        <% auctions.forEach(auction => { %>
+        <% for (let i = 1; i < 4; i++) { %>
+          <% const auction = auctions[i]; %>
           <div class="col-12 col-md-4 mb-4">
             <%- include('partials/card.ejs', {auction: auction}) %>
           </div>
-        <% }) %>
+        <% } %>
       </div>
     </div>
   </section>
