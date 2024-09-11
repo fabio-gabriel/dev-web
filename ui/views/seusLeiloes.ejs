@@ -16,33 +16,37 @@
 <body class="poppins-regular">
     <%- include('partials/header.ejs') %>
 
-    <div class="bg-alternative py-5">
-        <div class="container-fluid px-5">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-12 col-md-2">
-                    <p><strong>Bem-vindo <%= user.username %></strong></p>
-                    <div>ID: <%= user.id %><i class="bi bi-pen"></i> <br>role: <%= user.role %> <br>Infos do USER 3</div>
-                </div>
-
-                <!-- Grid -->
-                <div class="col-12 col-md-10">
-                    <!-- Container sets a standard maximum width -->
-                    <div class="container">
-                        <h3 class="poppins-bold">Meus Leilões</h3>
-                        <a href="criarLeilao.html" class="btn btn-primary mb-3">+ Criar leilão</a>
-                        <div class="row">
-                            <% auctions.forEach(auction => { %>
-                                <div class="col-12 col-md-4 mb-4">
-                                  <%- include('partials/card.ejs', {auction: auction}) %>
-                                </div>
-                              <% }) %>
+    <% if (user) { %>
+        <div class="bg-alternative py-5">
+            <div class="container-fluid px-5">
+                <div class="row">
+                    <!-- Sidebar -->
+                    <div class="col-12 col-md-2">
+                        <p><strong>Bem-vindo <%= user.username %></strong></p>
+                        <div>ID: <%= user.id %><i class="bi bi-pen"></i> <br>role: <%= user.role %> <br>Infos do USER 3</div>
+                    </div>
+    
+                    <!-- Grid -->
+                    <div class="col-12 col-md-10">
+                        <!-- Container sets a standard maximum width -->
+                        <div class="container">
+                            <h3 class="poppins-bold">Meus Leilões</h3>
+                            <a href="criarLeilao.html" class="btn btn-primary mb-3">+ Criar leilão</a>
+                            <div class="row">
+                                <% auctions.forEach(auction => { %>
+                                    <div class="col-12 col-md-4 mb-4">
+                                      <%- include('partials/card.ejs', {auction: auction}) %>
+                                    </div>
+                                  <% }) %>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <% } else { %>
+        <h3>Você não tem uma conta!</h3>
+    <% } %>
 
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>

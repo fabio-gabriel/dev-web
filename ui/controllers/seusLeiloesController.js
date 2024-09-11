@@ -1,15 +1,21 @@
 const axios = require('axios').default
-const user = { id: 1, username: 'pimenta', role: 'admin' } // { id: 2, username: 'fabio', role: 'user' }
+const user1 = { id: 1, username: 'pimenta', role: 'admin' } 
+const user2 = { id: 2, username: 'fabio', role: 'user' }
+const userV = undefined
+const activeUser = user2
 
 class SeusLeiloesController{
 
   async yourAuctionsJSON(req, res){
     try {
-      let response = await axios.get('http://localhost:8084/seusLeiloes', {params: {username: user.username}})
-      let jsonRes = response.data
+      let jsonRes = {auctions: undefined}
+      if (activeUser) {
+        let response = await axios.get('http://localhost:8084/seusLeiloes', {params: {username: activeUser.username}})
+        jsonRes = response.data
+      }
       res.render('seusLeiloes', {
         title: "Seus Leiloes",
-        user: user,
+        user: activeUser,
         auctions: jsonRes.auctions
       })
     } catch (error) {
