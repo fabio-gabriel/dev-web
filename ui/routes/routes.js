@@ -1,5 +1,7 @@
 const express = require('express')
 const HomeController = require('../controllers/homeController.js')
+const LeiloesController = require('../controllers/leiloesController.js')
+
 /*
 const AdministrativeController = require('../controllers/administrativeController.js')
 const UserController = require('../controllers/userController')
@@ -11,6 +13,7 @@ const router = express.Router()
 
 // Home routes
 router.get('/', HomeController.index)
+router.get('/leiloes', LeiloesController.index)
 /*
 router.get('/login', verify_user_logged, HomeController.login)
 router.post('/login', HomeController.authenticate)
