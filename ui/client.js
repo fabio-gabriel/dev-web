@@ -9,10 +9,6 @@ app.set('view engine', 'ejs')
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-// what
-// const defaultGET = require('./src/defaultGET')
-// const defaultPOST = require('./src/defaultPOST')
-
 const routes = require('./routes/routes')
 app.use("/", routes)
 

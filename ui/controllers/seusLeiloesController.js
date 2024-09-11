@@ -1,14 +1,16 @@
 const axios = require('axios').default
-const user = require('../user')
+const userDefiner = require('../user')
+const user = { id: 1, username: 'pimenta', role: 'admin' } // { id: 2, username: 'fabio', role: 'user' }
 
-class HomeController{
+class SeusLeiloesController{
 
-  async index(req, res){
+  async yourAuctionsJSON(req, res){
     try {
-      let response = await axios.get('http://localhost:8084/')
+      let response = await axios.get('http://localhost:8084/seusLeiloes', {params: {username: user.username}})
       let jsonRes = response.data
-      res.render('index', {
-        title: "Home",
+      res.render('seusLeiloes', {
+        title: "Seus Leiloes",
+        user: user,
         auctions: jsonRes.auctions
       })
     } catch (error) {
@@ -65,4 +67,4 @@ class HomeController{
     */
 }
 
-module.exports = new HomeController
+module.exports = new SeusLeiloesController

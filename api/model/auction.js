@@ -221,7 +221,7 @@ class AuctionItem{
     db.delete(id)
   }
 
-  static where = ({
+  static where({
     name = null,
     highestBid = null,
     conservation = null,
@@ -233,46 +233,47 @@ class AuctionItem{
     location = null,
     tags = null,
     deleted = null
-  }) => {
-    const db = new DataAccessor('auctions')
-    let items_data = []
+  }) {
+    const db = new DataAccessor('auctions');
+    let items_data = db.data; // Get all data
 
-    if(name){
-      items_data = db.where('name', name)
+    // Filter the data based on provided parameters
+    if (name) {
+      items_data = db.where('name', name);
     }
-    if(highestBid){
-      items_data = db.where('highestBid', highestBid)
+    if (highestBid) {
+      items_data = db.where('highestBid', highestBid);
     }
-    if(conservation){
-      items_data = db.where('conservation', conservation)
+    if (conservation) {
+      items_data = db.where('conservation', conservation);
     }
-    if(description){
-      items_data = db.where('description', description)
+    if (description) {
+      items_data = db.where('description', description);
     }
-    if(category){
-      items_data = db.where('category', category)
+    if (category) {
+      items_data = db.where('category', category);
     }
-    if(images){
-      items_data = db.where('images', images)
+    if (images) {
+      items_data = db.where('images', images);
     }
-    if(auctionDetails){
-      items_data = db.where('auctionDetails', auctionDetails)
+    if (auctionDetails) {
+      items_data = db.where('auctionDetails', auctionDetails);
     }
-    if(seller){
-      items_data = db.where('seller', seller)
+    if (seller) {
+      items_data = db.where('seller', seller);
     }
-    if(location){
-      items_data = db.where('location', location)
+    if (location) {
+      items_data = db.where('location', location);
     }
-    if(tags){
-      items_data = db.where('tags', tags)
+    if (tags) {
+      items_data = db.where('tags', tags);
     }
-    if(deleted){
-      items_data = db.where('deleted', deleted)
+    if (deleted) {
+      items_data = db.where('deleted', deleted);
     }
 
-    return items_data.map((data)=>{
-      let instanced_item =  new AuctionItem(
+    return items_data.map((data) => {
+      let instanced_item = new AuctionItem(
         data["name"],
         data["highestBid"],
         data["conservation"],
@@ -285,9 +286,8 @@ class AuctionItem{
         data["tags"]
       );
       instanced_item.id = data["id"];
-
       return instanced_item;
-    })
+    });
   }
 
   static all(){

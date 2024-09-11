@@ -25,11 +25,20 @@ class DataAccessor{
     return record;
   }
 
-  where(key, value){
-    let record = this.data.filter(element =>  element[key].toLowerCase().includes(value.toLowerCase()));
-    
+  where(key, value) {
+    const keyParts = key.split('.');
+    console.log(key)
+  
+    let record = this.data.filter(element => {
+      let nestedValue = keyParts.reduce((obj, keyPart) => obj && obj[keyPart], element);
+      console.log(`Checking ${nestedValue} against ${value.username}`); // Log the comparison
+      return nestedValue && nestedValue.toLowerCase().includes(value.username.toLowerCase());
+    });
+  
+    console.log("Filtered records:", record);
     return record;
   }
+  
 
   create(json){
     const existing_ids = this.data.map(({id})=>(id))
