@@ -11,7 +11,6 @@
 
 <body>
     <%- include('partials/header.ejs') %>
-
     <hr>
 
     <div class="container mt-5">
@@ -20,12 +19,12 @@
                 <img src="images/placeholder.jpg" class="img-fluid" alt="Auction Item Image" style="width: 400px;">
             </div>
             <div class="col-md-6 offset-md-1">
-                <h2>LP Vinil - Led Zeppelin IV</h2>
+                <h2><%= auction.name %></h2>
                 <br>
                 <div class="d-flex justify-content-around align-items-center p-1 border">
                     <div>
                         <p class="mb-0"><strong>Maior lance:</strong></p>
-                        <h4 class="bid-text">R$120,00</h4>
+                        <h4 class="bid-text"><%= auction.highestBid.value %></h4>
                     </div>
 
                     <div class="text-center">
@@ -52,10 +51,9 @@
                 </div>
 
                 <br>
-                <p><strong>Estado:</strong> Usado</p>
-                <p><strong>Categoria:</strong> Livros e Mídia</p>
-                <p><strong>Descrição:</strong> LP Led Zeppelin IV - Capa em ótimo estado, vinil com sinais de manuseio e
-                    desgastado com o uso.</p>
+                <p><strong>Estado:</strong> <%= auction.conservation %></p>
+                <p><strong>Categoria:</strong> <%= auction.category %></p>
+                <p><strong>Descrição:</strong> <%= auction.description %></p>
                 <form action="/submit" method="POST" enctype="multipart/form-data">
 
                     <label for="currency-field"><strong>Seu lance</strong></label>
