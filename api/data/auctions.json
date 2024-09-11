@@ -19,7 +19,7 @@
       "reservePrice": 1500.00
     },
     "seller": {
-      "account": "seller_456",
+      "username": "seller_456",
       "contactInfo": {
         "email": "seller@example.com",
         "phone": "+1234567890"
