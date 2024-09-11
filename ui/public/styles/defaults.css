@@ -126,3 +126,12 @@ a:hover {
     background-color: #444 !important;
     color: #ffffff !important;
 }
+
+.dark-mode .card {
+    color: var(--text-color);
+}
+
+.container {
+    color: var(--text-color) !important;
+    text-decoration: none;
+}
