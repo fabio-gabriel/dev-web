@@ -1,21 +1,18 @@
-function loadDocJSON(url, id) {
-  fetch(url)
-    .then(response => {
-      response.json().then((data) => {
-        document.getElementById(id).innerHTML = arrToUl(data);
-      });
-    }).catch(err => {
-      console.error('Failed retrieving information', err);
-    });
-}
+const URL = require('url')
+const data = require('../data/universidades.json')
 
-function arrToUl(response) {
-  lista = response.lista;
-  str = "<h3>" + response.nome + "</h3> <ul>";
-  for (i = 0; i < lista.length; i++)
-    str += "<li>" + lista[i] + "</li>";
-  str += "</ul>";
-  return str;
-}
+function handleGET(req, res) {
 
-loadDocJSON("../data/users.json", "demo2");
+    const { id, name, username, role, cpf, email, password, deleted } = URL.parse(req.url, true).query
+    const recurso = URL.parse(req.url, false).pathname
+
+    switch (recurso) {
+        case ("/list"):
+            return res.end(JSON.stringify(data)) // envia os dados no formato JSON
+
+        default:
+            res.statusCode = '404'
+            return res.end()
+    }
+}
+module.exports = handleGET
