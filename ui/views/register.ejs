@@ -9,23 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <title>Leilões</title>
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light poppins-regular">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-center flex-grow-1">
-                <a class="nav-link text-dark px-4" href="index.html">Início</a>
-                <a class="nav-link text-dark px-4" href="leiloes.html">Leilões</a>
-                <a class="nav-link text-dark px-4" href="seusLeiloes.html">Vender</a>
-            </div>
-            <div class="d-flex justify-content-center w-auto px-4">
-                <a class="btn btn-primary" href="login.html" role="button">Entrar/Cadastre-se</a>
-            </div>
-        </div>
-    </nav>
+    <%- include('partials/header.ejs') %>
 
     <section class="vh-100">
         <div class="container-fluid h-100">
@@ -79,20 +68,8 @@
         </div>
     </section>
 
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Início</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Leilões</a></li>
-                <li class="nav-item"><a href="criarLeilao.html" class="nav-link px-2 text-body-secondary">Vender</a>
-                </li>
-                <li class="nav-item"><a href="login.html" class="nav-link px-2 text-body-secondary">Login/Cadastro</a>
-                </li>
-            </ul>
-            <p class="text-center text-body-secondary">&copy; Leilão Fácil</p>
-        </footer>
-    </div>
-
+    <%- include('partials/footer.ejs') %>
+    <script src="/scripts/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
