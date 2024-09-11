@@ -1,10 +1,7 @@
 const axios = require('axios').default
-const user = require('../user')
-const userDefiner = require('../user')
 const user1 = { id: 1, username: 'pimenta', role: 'admin' } 
 const user2 = { id: 2, username: 'fabio', role: 'user' }
-
-userDefiner.setUser(user1)
+const userV = undefined
 
 
 class HomeController{
@@ -16,7 +13,7 @@ class HomeController{
       res.render('index', {
         title: "Home",
         auctions: jsonRes.auctions,
-        user: userDefiner.getUser()
+        user: userV
       })
     } catch (error) {
       console.log(error.message)

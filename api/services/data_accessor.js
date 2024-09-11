@@ -27,8 +27,6 @@ class DataAccessor{
 
   where(key, value) {
     const keyParts = key.split('.');
-    
-    console.log(key, value);
   
     let record = this.data.filter(element => {
       // If the keyParts length is 1, it's an unnested property

@@ -4,10 +4,10 @@ const SeusLeiloesController = require('../controllers/seusLeiloesController.js')
 const LeiloesController = require('../controllers/leiloesController.js')
 
 /*
-const AdministrativeController = require('../controllers/administrativeController.js')
-const UserController = require('../controllers/userController')
 const AuctionController = require('../controllers/auctionController')
-*/
+const AdministrativeController = require('../controllers/administrativeController.js')
+const UserController = require('../controllers/userController') */
+
 const axios = require('axios').default
 
 const router = express.Router()
@@ -21,6 +21,13 @@ router.post('/logout', HomeController.logout)
 router.get('/forgotpassword', HomeController.forgotPassword)
 */
 router.get('/seusLeiloes', SeusLeiloesController.yourAuctionsJSON)
+router.get('/leiloes', LeiloesController.index)
+
+
+
+
+
+
 /*
 // Administrative routes (requires authentication)
 router.use('/administrative', authenticate)

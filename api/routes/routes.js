@@ -1,6 +1,8 @@
 const express = require('express')
 const HomeController = require('../controllers/homeController.js')
-const seusLeiloesController = require('../controllers/seusLeiloesController.js')
+const SeusLeiloesController = require('../controllers/seusLeiloesController.js')
+const LeiloesController = require('../controllers/leiloesController.js')
+
 /*
 const AdministrativeController = require('../controllers/administrativeController.js')
 const AuctionController = require("../controllers/auctionController")
@@ -11,7 +13,8 @@ const router = express.Router()
 
 // Home
 router.get('/', HomeController.index)
-router.get('/seusLeiloes', seusLeiloesController.yourActionsJSON)
+router.get('/seusLeiloes', SeusLeiloesController.yourActionsJSON)
+router.get('/Leiloes', LeiloesController.index)
 /*router.post('/authenticate', HomeController.authenticate)
 router.post('/auth', authenticate, HomeController.validateTokenAuth)
 router.post('/logout', HomeController.logout)
