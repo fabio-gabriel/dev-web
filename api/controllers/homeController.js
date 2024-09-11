@@ -4,10 +4,10 @@ const Auction = require('../model/auction')
 class HomeController{
 
   async index(req, res){
-    //const auction = Action.where({deleted: "false"})
+    const auction = Auction.where({deleted: "false"})
 
     let data = {
-      auctions: Auction
+      auctions: auction
     }
     res.status(200)
     res.send(JSON.stringify(data))

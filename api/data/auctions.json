@@ -1,4 +1,4 @@
-{
+[{
     "id": 1,
     "name": "LP Vinil - Led Zeppelin IV",
     "highestBid": {
@@ -30,6 +30,7 @@
       "vase",
       "antique",
       "Ming dynasty"
-    ]
-  }
+    ],
+    "deleted": "false"
+  }]
   

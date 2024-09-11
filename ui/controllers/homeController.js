@@ -4,11 +4,8 @@ class HomeController{
 
   async index(req, res){
     try {
-      console.log("jesus")
       let response = await axios.get('http://localhost:8084/')
-      console.log("oi")
       let jsonRes = response.data
-      console.log(jsonRes)
       res.render('index', {
         title: "Home",
         auctions: jsonRes.auctions

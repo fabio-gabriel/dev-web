@@ -72,7 +72,7 @@ class AuctionItem{
     location = null,
     tags = null
   }) => {
-    const db = new DataAccessor('auction_item');
+    const db = new DataAccessor('auctions');
     const json = generate_json(
       name,
       highestBid,
@@ -117,7 +117,7 @@ class AuctionItem{
     location = null,
     tags = null
   }) => {
-    const db = new DataAccessor('auction_item');
+    const db = new DataAccessor('auctions');
 
     // Verificar campos nulos e manter os valores atuais
     if(name == null) name = this.name;
@@ -164,7 +164,7 @@ class AuctionItem{
   }
 
   delete(){
-    const db = new DataAccessor('auction_item')
+    const db = new DataAccessor('auctions')
     db.delete(this.id)
     // Limpar os campos após exclusão
     this.name = null;
@@ -197,7 +197,7 @@ class AuctionItem{
   }
 
   static find(id){
-    const db = new DataAccessor('auction_item')
+    const db = new DataAccessor('auctions')
     let data = db.find(id);
     let auctionItem  = new AuctionItem(
       data["name"],
@@ -217,7 +217,7 @@ class AuctionItem{
   }
 
   static delete(id){
-    const db = new DataAccessor('auction_item')
+    const db = new DataAccessor('auctions')
     db.delete(id)
   }
 
@@ -234,7 +234,7 @@ class AuctionItem{
     tags = null,
     deleted = null
   }) => {
-    const db = new DataAccessor('auction_item')
+    const db = new DataAccessor('auctions')
     let items_data = []
 
     if(name){
@@ -291,7 +291,7 @@ class AuctionItem{
   }
 
   static all(){
-    const db = new DataAccessor('auction_item')
+    const db = new DataAccessor('auctions')
     let items_data = db.all()
 
     return items_data.map((data)=>{
