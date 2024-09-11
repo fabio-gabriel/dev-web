@@ -18,10 +18,6 @@
 <body class="poppins-regular">
   <%- include('partials/header.ejs') %>
 
-  <% auctions.forEach(auction => { %>
-    <h1>Something here<%= auction.name %></h1>
-  <% }) %>
-
   <div class="d-flex flex-column noto-serif-bold text-center py-5">
     <h2 class="py-3">Seu sites de leilões descomplicado!</h2>
     <h3 class="py-3">Venda fácil, compre fácil!</h3>
@@ -36,15 +32,11 @@
     <div class="container">
       <div class="row">
         <!-- Full width on mobile, third width on larger screens -->
-        <div class="col-12 col-md-4 mb-4">
-          <%- include('partials/card.ejs') %>
-        </div>
-        <div class="col-12 col-md-4 mb-4">
-          <%- include('partials/card.ejs') %>
-        </div>
-        <div class="col-12 col-md-4 mb-4">
-          <%- include('partials/card.ejs') %>
-        </div>
+        <% auctions.forEach(auction => { %>
+          <div class="col-12 col-md-4 mb-4">
+            <%- include('partials/card.ejs', {auction: auction}) %>
+          </div>
+        <% }) %>
       </div>
     </div>
   </section>

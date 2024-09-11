@@ -1,38 +1,74 @@
 <a href="produto.html" class="card-link">
-    <div class="card p-2">
-      <img src="images/placeholder.jpg" class="card-img-crop" alt="Card Image 1">
-      <div class="container border py-2 my-3 px-2">
-        <div class="row">
-          <div class="col-6 text-center border-end">
-            Lance:
-            <div class="bid-text">
-              $10
-            </div>
+  <div class="card p-2">
+    <img src="images/placeholder.jpg" class="card-img-crop" alt="Card Image 1">
+    <div class="container border py-2 my-3 px-2">
+      <div class="row">
+        <div class="col-6 text-center border-end">
+          Lance:
+          <div class="bid-text">
+            R$<%= auction.highestBid.value %>
           </div>
-          <div class="container col-6 text-center">
-            Finaliza em:
-            <div class="row">
-              <div class="col-3 border-end g-0">
-                <strong class="clock-number">00</strong><br>
-                D
-              </div>
-              <div class="col-3 border-end g-0">
-                <strong class="clock-number">00</strong><br>
-                H
-              </div>
-              <div class="col-3 border-end g-0">
-                <strong class="clock-number">00</strong><br>
-                M
-              </div>
-              <div class="col-3 g-0">
-                <strong class="clock-number">00</strong><br>
-                S
-              </div>
+        </div>
+        <div class="container col-6 text-center">
+          Finaliza em:
+          <div class="row" id="countdown">
+            <div class="col-3 border-end g-0">
+              <strong class="clock-number" id="days">00</strong><br>
+              D
+            </div>
+            <div class="col-3 border-end g-0">
+              <strong class="clock-number" id="hours">00</strong><br>
+              H
+            </div>
+            <div class="col-3 border-end g-0">
+              <strong class="clock-number" id="minutes">00</strong><br>
+              M
+            </div>
+            <div class="col-3 g-0">
+              <strong class="clock-number" id="seconds">00</strong><br>
+              S
             </div>
           </div>
         </div>
       </div>
-      <strong>Nome da listagem</strong>
-      <p class="card-text">Localização<br>Outra info</p>
     </div>
+    <strong><%= auction.name %></strong>
+    <p class="card-text"><%= auction.location %><br><%= auction.category %></p>
+  </div>
 </a>
+
+<script>
+  var auctionEndDate = new Date("<%= auction.auctionDetails.endDate %>");
+  
+  console.log('Auction End Date:', auctionEndDate);
+  
+  // Calcula o tempo restante
+  function updateCountdown() {
+    var now = new Date();
+    var timeDifference = auctionEndDate - now;
+    
+    if (timeDifference <= 0) {
+      document.getElementById('days').textContent = '00';
+      document.getElementById('hours').textContent = '00';
+      document.getElementById('minutes').textContent = '00';
+      document.getElementById('seconds').textContent = '00';
+      return;
+    }
+    
+    var seconds = Math.floor(timeDifference / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+    
+    hours %= 24;
+    minutes %= 60;
+    seconds %= 60;
+    
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+  
+  updateCountdown()
+</script>
