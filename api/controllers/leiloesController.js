@@ -41,14 +41,11 @@ class HomeController{
 
     try {
       let book = Auction.create({
+        //TODO highestBid, seller, images and auctionDetails should be auto populated by the server. Tags need to be parsed to become an array
         name: params.name,
-        highestBid: params.highestBid,
         conservation: params.conservation,
         description: params.description,
         category: params.category,
-        images: params.images,
-        auctionDetails: params.auctionDetails,
-        seller: params.seller,
         location: params.location,
         tags: params.tags
       })
