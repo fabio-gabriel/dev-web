@@ -1,8 +1,6 @@
 const express = require('express')
 const HomeController = require('../controllers/homeController.js')
-const SeusLeiloesController = require('../controllers/seusLeiloesController.js')
 const LeiloesController = require('../controllers/leiloesController.js')
-const leilaoController = require('../controllers/leilaoController.js')
 
 /*
 const AdministrativeController = require('../controllers/administrativeController.js')
@@ -13,8 +11,8 @@ const Authentication = require('../services/authentication')
 const router = express.Router()
 
 router.get('/', HomeController.index)
-router.get('/seusLeiloes', SeusLeiloesController.yourActionsJSON)
 router.get('/Leiloes', LeiloesController.index)
-router.get('/leilao/:id', leilaoController.show)
+router.get('/leiloes/:id', LeiloesController.show)
+router.get('/seusLeiloes', LeiloesController.yourAuctionsJSON)
 
 module.exports = router
