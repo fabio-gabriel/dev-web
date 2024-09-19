@@ -7,7 +7,7 @@
         "cpf": "00000000000",
         "email": "joaopedropimenta@alu.ufc.br",
         "password": "12345",
-        "deleted": "false"
+        "deleted": false
     },
     {
         "id": 2,
@@ -17,6 +17,6 @@
         "cpf": "00000000001",
         "email": "seller@example.com",
         "password": "12345",
-        "deleted": "false"
+        "deleted": false
     }
 ]

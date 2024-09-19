@@ -85,7 +85,7 @@ class AuctionItem{
       location,
       tags
     )
-    json['deleted'] = 'false'
+    json['deleted'] = false
 
     let data = db.create(json)
     let auctionItem = new AuctionItem(
@@ -145,7 +145,7 @@ class AuctionItem{
       this.id
     )
 
-    json['deleted'] = 'false'
+    json['deleted'] = false
     let data = db.update(json);
 
     // Atualizar o objeto com os novos valores
