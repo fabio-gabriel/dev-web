@@ -18,3 +18,8 @@
 .dark-mode {
     --card-bg-color: #333333; /* Cor de fundo do card para tema escuro */
 }
+
+.category-link {
+    display: block; /* Faz cada link ocupar uma linha inteira */
+    margin-bottom: 10px; /* Adiciona um espaço entre os links, opcional */
+  }

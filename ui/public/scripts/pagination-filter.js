@@ -1,3 +1,5 @@
+let selectedCategory = 'all'; // Categoria inicial selecionada
+
 function createCard(auction) {
     return `
         <div class="col-12 col-md-4 mb-4">
@@ -87,12 +89,15 @@ function setupPagination(auctions, itemsPerPage) {
     }
 }
 
+// Função que muda a página e atualiza a exibição
 function changePage(page) {
     currentPage = page;
-    displayLeiloes(auctions, currentPage, itemsPerPage);
-    setupPagination(auctions, itemsPerPage);
+    const filteredAuctions = filterAuctions();
+    displayLeiloes(filteredAuctions, currentPage, itemsPerPage);
+    setupPagination(filteredAuctions, itemsPerPage);
 }
 
+// Função de configuração do countdown para cada leilão
 function setupCountdown(auction) {
     const auctionEndDate = new Date(auction.auctionDetails.endDate);
 
@@ -126,7 +131,25 @@ function setupCountdown(auction) {
     setInterval(updateCountdown, 1000);
 }
 
+// Função de filtragem dos leilões com base na categoria
+function filterAuctions() {
+    if (selectedCategory === 'all') {
+        return auctions; // Se "Todos" estiver selecionado, retorna todos os leilões
+    }
+    return auctions.filter(auction => auction.category === selectedCategory);
+}
+
+// Função para atualizar a categoria selecionada e recarregar a exibição
+function updateCategory(newCategory) {
+    selectedCategory = newCategory;
+    currentPage = 1;
+    const filteredAuctions = filterAuctions();
+    displayLeiloes(filteredAuctions, currentPage, itemsPerPage);
+    setupPagination(filteredAuctions, itemsPerPage);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    displayLeiloes(auctions, currentPage, itemsPerPage);
-    setupPagination(auctions, itemsPerPage);
+    const filteredAuctions = filterAuctions();
+    displayLeiloes(filteredAuctions, currentPage, itemsPerPage);
+    setupPagination(filteredAuctions, itemsPerPage);
 });

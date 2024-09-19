@@ -20,9 +20,14 @@
         <div class="container-fluid px-5">
             <div class="row">
                 <!-- Sidebar -->
-                <div class="col-12 col-md-2">
+                <div class="col-12 col-md-2 mb-4">
                     <p><strong>Categorias</strong></p>
-                    <a href="#">Uma categoria <br>Duas categorias <br>Tres categorias</a>
+                    <div class="categories-list">
+                        <a href="#" class="category-link" onclick="updateCategory('all')">Todos</a>
+                        <a href="#" class="category-link" onclick="updateCategory('Artes')">Artes</a>
+                        <a href="#" class="category-link" onclick="updateCategory('Antiguidades')">Antiguidades</a>
+                        <a href="#" class="category-link" onclick="updateCategory('Livros e Mídia')">Livros e Mídia</a>
+                      </div>
                 </div>
 
                 <!-- Grid -->
@@ -48,7 +53,7 @@
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>
 
-    <script src="/scripts/pagination.js"></script>
+    <script src="/scripts/pagination-filter.js"></script>
     
     <script>
         const auctions = <%- JSON.stringify(auctions) %>;
