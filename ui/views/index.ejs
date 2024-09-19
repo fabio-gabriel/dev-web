@@ -30,20 +30,29 @@
     <h3 class="text-center poppins-bold mb-5">Ofertas do dia</h3>
 
     <div class="container">
-      <div class="row">
+      <div id="leiloes-container" class="row">
         <!-- Full width on mobile, third width on larger screens -->
-        <% for (let i = 1; i < 4; i++) { %>
-          <% const auction = auctions[i]; %>
-          <div class="col-12 col-md-4 mb-4">
-            <%- include('partials/card.ejs', {auction: auction}) %>
-          </div>
-        <% } %>
+        <!-- Leiloes serao carregados aqui -->
       </div>
+      
+      <nav aria-label="Page navigation">
+        <ul id="pagination" class="pagination justify-content-center">
+            <!-- Botões de paginação serão carregados dinamicamente -->
+        </ul>
+    </nav>
     </div>
   </section>
 
   <%- include('partials/footer.ejs') %>
   <script src="/scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="/scripts/pagination.js"></script>
+    
+    <script>
+        const auctions = <%- JSON.stringify(auctions) %>;
+        const itemsPerPage = 3;  // Número de leilões por página
+        let currentPage = 1;  // Página inicial
+    </script>
 </body>
 
 </html>
