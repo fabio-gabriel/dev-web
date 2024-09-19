@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/', HomeController.index)
 router.get('/Leiloes', LeiloesController.index)
 router.get('/leiloes/:id', LeiloesController.show)
-router.post('/leiloes/new', upload.single('file'), LeiloesController.create)
+router.post('/leiloes/new', upload.array('file', 3), LeiloesController.create)
 router.get('/seusLeiloes', LeiloesController.yourAuctionsJSON)
 
 module.exports = router
