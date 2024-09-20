@@ -40,6 +40,14 @@ class HomeController{
     const params = req.body    
 
     try {
+      let auctionDetails = {
+        startDate: new Date(Date.now()),
+        endDate: params.endDate,
+        reservedPrice: params.reservedPrice
+      };
+      let seller = getCurrentUserId(); //Implementar função para pegar id do vendedor
+      let highestBid = null; //Fazer função
+      let images = []; //Fazer função
       let book = Auction.create({
         //TODO highestBid, seller, images and auctionDetails should be auto populated by the server. Tags need to be parsed to become an array
         name: params.name,
@@ -47,7 +55,11 @@ class HomeController{
         description: params.description,
         category: params.category,
         location: params.location,
-        tags: params.tags
+        tags: params.tags,
+        highestBid: highestBid,
+        auctionDetails: auctionDetails,
+        seller: seller,
+        images: images
       })
 
       let data = {
