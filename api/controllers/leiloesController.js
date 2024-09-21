@@ -2,7 +2,7 @@ const Auction = require('../model/auction')
 const fs = require('fs')
 //const Authentication = require('../services/authentication')
 
-class HomeController{
+class LeiloesController{
 
   async index(req, res){
     const auction = Auction.where({deleted: false})
@@ -46,10 +46,12 @@ class HomeController{
         reservedPrice: params.reservedPrice
       };
       //let seller = getCurrentUserId(); //Implementar função para pegar id do vendedor
+      //TODO
+      // let seller = getCurrentUserId(); Implementar função para pegar id do vendedor
       let highestBid = null; //Fazer função
       let images = []; //Fazer função
-      let book = Auction.create({
-        //TODO highestBid, seller, images and auctionDetails should be auto populated by the server. Tags need to be parsed to become an array
+      let auction = Auction.create({
+        //TODO seller, images and should be auto populated by the server. Tags need to be parsed to become an array
         name: params.name,
         conservation: params.conservation,
         description: params.description,
@@ -60,10 +62,12 @@ class HomeController{
         auctionDetails: auctionDetails,
         //seller: seller,
         images: images
+        seller: null,
+        images: null
       })
 
       let data = {
-        book: book
+        auction: auction
       }
 
       res.status(201)
@@ -77,6 +81,60 @@ class HomeController{
     }
   }
 
+  async update(req, res) {
+    const params = req.body
+
+    let auction = Auction.find(req.params.id)
+
+    try {
+      let auctionDetails = {
+        endDate: params.endDate,
+        reservedPrice: params.reservedPrice
+      };
+      let highestBid = null; 
+      let images = [];
+      auction.update({
+        name: params.name,
+        conservation: params.conservation,
+        description: params.description,
+        category: params.category,
+        location: params.location,
+        tags: params.tags,
+        highestBid: highestBid,
+        auctionDetails: auctionDetails,
+        images: null
+      })
+
+      let data = {
+        auction: auction
+      }
+
+      res.status(200)
+      return res.send(JSON.stringify(data))
+    } catch (error) {
+      console.log(error.message)
+
+      res.status(500)
+      //TODO send an HTML modal back or something
+      return res.send()
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      Auction.delete(req.params.id)
+
+      res.status(200)
+      return res.send()
+    } catch (error) {
+      console.log(error.message)
+
+      res.status(500)
+      //TODO send an HTML modal back or something
+      return res.send()
+    }
+  }
+
 }
 
-module.exports = new HomeController
+module.exports = new LeiloesController

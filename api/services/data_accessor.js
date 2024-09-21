@@ -16,7 +16,7 @@ class DataAccessor{
   }
 
   find(id){
-    let record = this.data.filter(element => element["id"] == id.id); //fix id.id
+    let record = this.data.filter(element => element["id"] == id); //fix id.id
 
     if(record.length < 1){
       record = null;

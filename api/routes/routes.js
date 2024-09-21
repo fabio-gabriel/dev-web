@@ -8,6 +8,8 @@ const router = express.Router()
 router.get('/', HomeController.index)
 router.get('/Leiloes', LeiloesController.index)
 router.get('/leiloes/:id', LeiloesController.show)
+router.put('/leiloes/:id', upload.array('file', 3), LeiloesController.update)
+router.delete('/leiloes/:id', LeiloesController.delete)
 router.post('/leiloes/new', upload.array('file', 3), LeiloesController.create)
 router.get('/seusLeiloes', LeiloesController.yourAuctionsJSON)
 
