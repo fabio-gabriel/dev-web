@@ -27,7 +27,7 @@ class LeiloesController{
 
   async show(req, res){
     const auctionId = parseInt(req.params.id);
-    const auction = Auction.find({id: auctionId});
+    const auction = Auction.find(auctionId);
 
     let data = {
       auction: auction

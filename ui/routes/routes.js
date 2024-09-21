@@ -5,6 +5,7 @@ const SeusLeiloesController = require('../controllers/seusLeiloesController.js')
 const LeiloesController = require('../controllers/leiloesController.js')
 const leilaoController = require('../controllers/leilaoController.js')
 const CriarLeilaoController = require('../controllers/criarLeilao.js')
+const leiloesController = require('../controllers/leiloesController.js')
 
 const upload = multer();
 
@@ -30,5 +31,7 @@ router.get('/leiloes', LeiloesController.index)
 router.get('/leilao/:id', leilaoController.show)
 router.get('/leiloes/new', CriarLeilaoController.index)
 router.post('/leiloes/new', upload.array('file', 3) ,CriarLeilaoController.create)
+router.get('/leilao/:id/editar', SeusLeiloesController.edit)
+router.put('/leiloes/:id', leiloesController.update)
 
 module.exports = router

@@ -22,27 +22,33 @@
                 &lt;- Retornar para os seus leilões</a>
             <div class="form-container mt-2">
                 <h2>Crie seu leilão</h2>
-                <form action="/leiloes/new" method="POST" enctype="multipart/form-data" id="forms">
+                <form action="/leiloes/<%= auction.id %>" method="PUT" enctype="multipart/form-data" id="forms">
                     <div class="mb-3">
                         <label for="category">Selecione a Categoria do produto</label>
-                        <select class="form-select" id="category" name="category"> 
-                            <option value="Eletrônicos">Eletrônicos</option>
-                            <option value="Roupas e Acessórios">Roupas e Acessórios</option>
-                            <option value="Móveis e Decoração">Móveis e Decoração</option>
-                            <option value="Alimentos e Bebidas">Alimentos e Bebidas</option>
-                            <option value="Beleza e Cuidados Pessoais">Beleza e Cuidados Pessoais</option>
-                            <option value="Esportes e Lazer">Esportes e Lazer</option>
-                            <option value="Livros e Mídias">Livros e Mídias</option>
-                            <option value="Brinquedos">Brinquedos</option>
-                            <option value="Automotivo">Automotivo</option>
-                            <option value="Jardinagem">Jardinagem</option>
-                            <option value="Saúde">Saúde</option>
+                        <select class="form-select" id="category" name="category">
+                            <% const categories = [
+                                "Eletrônicos",
+                                "Roupas e Acessórios",
+                                "Móveis e Decoração",
+                                "Alimentos e Bebidas",
+                                "Beleza e Cuidados Pessoais",
+                                "Esportes e Lazer",
+                                "Livros e Mídias",
+                                "Brinquedos",
+                                "Automotivo",
+                                "Jardinagem",
+                                "Saúde"
+                            ]; %>
+                            <% categories.forEach(category => { %>
+                                <option value="<%= category %>" <%= auction.category === category ? 'selected' : '' %>><%= category %></option>
+                            <% }); %>
                         </select>
+                        
                     </div>
 
                     <div class="mb-3">
                         <label for="productName">Digite aqui o nome do seu produto</label>
-                        <textarea class="form-control" name="name" id="productName" rows="1" style="font-size: 12px;"></textarea>
+                        <textarea class="form-control" name="name" id="productName" rows="1" style="font-size: 12px;"><%= auction.name %></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -57,19 +63,12 @@
                     <div class="mb-3">
                         <label for="productDescription">Descrição do Produto</label>
                         <textarea class="form-control" name="descricao" id="description" rows="3"
-                            style="font-size: 12px;"></textarea>
+                            style="font-size: 12px;"> <%= auction.description %></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleFormControlFile1">Insira uma imagem do produto</label>
                         <input type="file" name="filename" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="currency-field">Lance Inicial</label>
-                        <input type="text" name="reservedPrice" id="currency-field"
-                            pattern="^R\$\d{1,3}(\.\d{3})*(,\d{2})?$" value="" data-type="currency"
-                            placeholder="R$1.000,00">
                     </div>
 
                     <div class="mb-3">

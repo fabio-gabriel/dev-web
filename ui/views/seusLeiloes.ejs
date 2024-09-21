@@ -29,16 +29,19 @@
                     <!-- Grid -->
                     <div class="col-12 col-md-10">
                         <!-- Container sets a standard maximum width -->
-                        <div class="container">
+                        <div id="leiloes-container" class="container">
                             <h3 class="poppins-bold">Meus Leilões</h3>
                             <a href="criarLeilao.html" class="btn btn-primary mb-3">+ Criar leilão</a>
                             <div class="row">
-                                <% auctions.forEach(auction => { %>
                                     <div class="col-12 col-md-4 mb-4">
-                                      <%- include('partials/card.ejs', {auction: auction}) %>
                                     </div>
-                                  <% }) %>
                             </div>
+
+                            <nav aria-label="Page navigation">
+                                <ul id="pagination" class="pagination justify-content-center">
+                                    <!-- Botões de paginação serão carregados dinamicamente -->
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -50,6 +53,15 @@
 
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="/scripts/card_leilao_edit.js"></script>
+    
+    <script>
+        const auctions = <%- JSON.stringify(auctions) %>;
+        const itemsPerPage = 6;  // Número de leilões por página
+        let currentPage = 1;  // Página inicial
+    </script>
+    
 </body>
 
 </html>

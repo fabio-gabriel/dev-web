@@ -18,6 +18,18 @@ class LeiloesController{
       console.log(error.message)
     }
   }
+
+  async update(req, res){
+    console.log("oi")
+    try {
+      const auctionId = req.params.id;
+      let response = await axios.put(`http://localhost:8084/leiloes/${auctionId}`)
+      let jsonRes = response.data
+      res.send('leilao editado')
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 }
 
 module.exports = new LeiloesController
