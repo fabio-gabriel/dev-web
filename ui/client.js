@@ -4,6 +4,7 @@ const app = express();
 const port = 8085
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.set('view engine', 'ejs')
 

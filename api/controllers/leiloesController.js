@@ -45,7 +45,7 @@ class HomeController{
         endDate: params.endDate,
         reservedPrice: params.reservedPrice
       };
-      let seller = getCurrentUserId(); //Implementar função para pegar id do vendedor
+      //let seller = getCurrentUserId(); //Implementar função para pegar id do vendedor
       let highestBid = null; //Fazer função
       let images = []; //Fazer função
       let book = Auction.create({
@@ -58,7 +58,7 @@ class HomeController{
         tags: params.tags,
         highestBid: highestBid,
         auctionDetails: auctionDetails,
-        seller: seller,
+        //seller: seller,
         images: images
       })
 
