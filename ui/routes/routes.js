@@ -1,9 +1,12 @@
 const express = require('express')
+const multer = require('multer')
 const HomeController = require('../controllers/homeController.js')
 const SeusLeiloesController = require('../controllers/seusLeiloesController.js')
 const LeiloesController = require('../controllers/leiloesController.js')
 const leilaoController = require('../controllers/leilaoController.js')
 const CriarLeilaoController = require('../controllers/criarLeilao.js')
+
+const upload = multer();
 
 /*
 const AuctionController = require('../controllers/auctionController')
@@ -26,6 +29,6 @@ router.get('/seusLeiloes', SeusLeiloesController.yourAuctionsJSON)
 router.get('/leiloes', LeiloesController.index)
 router.get('/leilao/:id', leilaoController.show)
 router.get('/leiloes/new', CriarLeilaoController.index)
-router.post('/leiloes/new', CriarLeilaoController.create)
+router.post('/leiloes/new', upload.array('file', 3) ,CriarLeilaoController.create)
 
 module.exports = router

@@ -21,8 +21,6 @@ class CriarLeilaoController{
 
   async create(req, res){
     let params = req.body
-    console.log(req)
-    console.log(params)
     try {
       let response = await axios.post('http://localhost:8084/leiloes/new', params)
       let jsonRes = response.data
