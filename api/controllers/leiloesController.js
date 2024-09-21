@@ -61,9 +61,8 @@ class LeiloesController{
         highestBid: highestBid,
         auctionDetails: auctionDetails,
         //seller: seller,
-        images: images
-        seller: null,
-        images: null
+        images: images,
+        seller: null
       })
 
       let data = {
