@@ -117,6 +117,21 @@ class LeiloesController{
     }
   }
 
+  async delete(req, res) {
+    try {
+      Auction.delete(req.params.id)
+
+      res.status(200)
+      return res.send()
+    } catch (error) {
+      console.log(error.message)
+
+      res.status(500)
+      //TODO send an HTML modal back or something
+      return res.send()
+    }
+  }
+
 }
 
 module.exports = new LeiloesController
