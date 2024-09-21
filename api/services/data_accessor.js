@@ -70,6 +70,7 @@ class DataAccessor{
   }
 
   delete(id){
+    console.log(id)
     let record = this.find(id);
     record["deleted"] = "true"
 

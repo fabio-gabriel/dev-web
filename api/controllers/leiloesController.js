@@ -85,6 +85,10 @@ class LeiloesController{
 
     let auction = Auction.find(req.params.id)
 
+    console.log(auction)
+
+    console.log(params)
+
     try {
       let auctionDetails = {
         endDate: params.endDate,
@@ -120,6 +124,7 @@ class LeiloesController{
   }
 
   async delete(req, res) {
+    console.log('oi')
     try {
       Auction.delete(req.params.id)
 

@@ -43,13 +43,30 @@ function createCard(auction) {
             <!-- Botões de Editar e Deletar -->
             <div class="d-flex justify-content-around">
                 <a href="/leilao/${auction.id}/editar" class="btn btn-warning">Editar</a>
-                <form action="/leilao/${auction.id}/deletar" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar este leilão?');">
-                    <button type="submit" class="btn btn-danger">Deletar</button>
-                </form>
+                <button class="btn btn-danger" onclick="deleteAuction(${auction.id})">Deletar</button>
             </div>
         </div>
     </a>
 </div>`;
+}
+
+function deleteAuction(id) {
+    if (confirm('Tem certeza que deseja deletar este leilão?')) {
+        fetch('/leilao/${id}/deletar', {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redireciona ou atualiza a página após a exclusão
+                window.location.reload(); // Atualiza a página
+            } else {
+                alert('Erro ao deletar o leilão.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+    }
 }
 
 function displayLeiloes(auctions, page, itemsPerPage) {

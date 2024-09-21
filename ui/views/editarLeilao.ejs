@@ -22,7 +22,7 @@
                 &lt;- Retornar para os seus leilões</a>
             <div class="form-container mt-2">
                 <h2>Crie seu leilão</h2>
-                <form action="/leiloes/<%= auction.id %>" method="PUT" enctype="multipart/form-data" id="forms">
+                <form action="/leiloes/<%= auction.id %>" method="GET" enctype="multipart/form-data" id="forms">
                     <div class="mb-3">
                         <label for="category">Selecione a Categoria do produto</label>
                         <select class="form-select" id="category" name="category">

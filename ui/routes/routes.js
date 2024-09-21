@@ -1,11 +1,7 @@
 const express = require('express')
 const multer = require('multer')
 const HomeController = require('../controllers/homeController.js')
-const SeusLeiloesController = require('../controllers/seusLeiloesController.js')
 const LeiloesController = require('../controllers/leiloesController.js')
-const leilaoController = require('../controllers/leilaoController.js')
-const CriarLeilaoController = require('../controllers/criarLeilao.js')
-const leiloesController = require('../controllers/leiloesController.js')
 
 const upload = multer();
 
@@ -26,12 +22,13 @@ router.post('/login', HomeController.authenticate)
 router.post('/logout', HomeController.logout)
 router.get('/forgotpassword', HomeController.forgotPassword)
 */
-router.get('/seusLeiloes', SeusLeiloesController.yourAuctionsJSON)
+router.get('/seusLeiloes', LeiloesController.yourAuctionsJSON)
 router.get('/leiloes', LeiloesController.index)
-router.get('/leilao/:id', leilaoController.show)
-router.get('/leiloes/new', CriarLeilaoController.index)
-router.post('/leiloes/new', upload.array('file', 3) ,CriarLeilaoController.create)
-router.get('/leilao/:id/editar', SeusLeiloesController.edit)
-router.put('/leiloes/:id', leiloesController.update)
+router.get('/leilao/:id', LeiloesController.show)
+router.get('/leiloes/new', LeiloesController.index)
+router.post('/leiloes/new', upload.array('file', 3) , LeiloesController.create)
+router.get('/leilao/:id/editar', LeiloesController.edit)
+router.get('/leiloes/:id', upload.array('file', 3), LeiloesController.update) //TODO Verificar por que não tá upando imagem
+router.post('/leilao/:id/deletar', LeiloesController.delete)
 
 module.exports = router
