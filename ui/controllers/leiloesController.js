@@ -78,7 +78,7 @@ class LeiloesController{
   async show(req, res){
     try {
       const auctionId = req.params.id;
-      let response = await axios.get(`http://localhost:8084/leilao/${auctionId}`)
+      let response = await axios.get(`http://localhost:8084/leiloes/${auctionId}`)
       let jsonRes = response.data
       res.render('produto', {
         title: "Leilao",

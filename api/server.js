@@ -17,6 +17,8 @@ app.set('view engine', 'ejs')
 
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use('/images', express.static('data/images'));
+
 // what
 // const defaultGET = require('./src/defaultGET')
 // const defaultPOST = require('./src/defaultPOST')
