@@ -25,10 +25,11 @@ router.get('/forgotpassword', HomeController.forgotPassword)
 router.get('/seusLeiloes', LeiloesController.yourAuctionsJSON)
 router.get('/leiloes', LeiloesController.index)
 router.get('/leilao/:id', LeiloesController.show)
-router.get('/leiloes/new', LeiloesController.index)
-router.post('/leiloes/new', upload.array('file', 3) , LeiloesController.create)
+router.get('/leiloes/new', LeiloesController.index_criaoleilao)
+router.post('/leiloes/new', upload.array('file', 3), LeiloesController.create);
+  
 router.get('/leilao/:id/editar', LeiloesController.edit)
-router.get('/leiloes/:id', upload.array('file', 3), LeiloesController.update) //TODO Verificar por que não tá upando imagem
+router.get('/leiloes/:id', upload.array('file', 3), LeiloesController.update)
 router.post('/leilao/:id/deletar', LeiloesController.delete)
 
 module.exports = router

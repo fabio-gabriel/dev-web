@@ -34,15 +34,30 @@ class LeiloesController{
     }
   }
 
-  async create(req, res){
-    let params = req.body
+  async create(req, res) {
+    let params = req.body;
+    let files = req.files;
+    console.log(req)
+  
+    console.log('Dados do formulário:', params);
+    console.log('Arquivos recebidos:', files);
+  
     try {
-      let response = await axios.post('http://localhost:8084/leiloes/new', params)
-      let jsonRes = response.data
-      console.log('Dados enviados')
-      res.send('Leilao criado')
+      let images = files.map(file => file.originalname);
+
+      console.log(images)
+  
+      let response = await axios.post('http://localhost:8084/leiloes/new', {
+        ...params,
+        images
+      });
+  
+      let jsonRes = response.data;
+      console.log('Dados enviados');
+      res.send('Leilão criado');
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
+      res.status(500).send('Erro ao criar leilão');
     }
   }
 

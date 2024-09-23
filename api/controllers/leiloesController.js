@@ -37,7 +37,9 @@ class LeiloesController{
   }
 
   async create(req, res){
-    const params = req.body    
+    const params = req.body
+
+    let images = req.body.images || [];
 
     try {
       let auctionDetails = {
@@ -49,7 +51,6 @@ class LeiloesController{
       //TODO
       // let seller = getCurrentUserId(); Implementar função para pegar id do vendedor
       let highestBid = null; //Fazer função
-      let images = []; //Fazer função
       let auction = Auction.create({
         //TODO seller, images and should be auto populated by the server. Tags need to be parsed to become an array
         name: params.name,

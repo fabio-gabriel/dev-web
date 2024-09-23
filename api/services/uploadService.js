@@ -1,12 +1,18 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../data/images'));
+    const auctionName = req.body.name;
+    const auctionPath = path.join(__dirname, '../data/images', auctionName);
+
+    fs.mkdir(auctionPath, { recursive: true }, (err) => {
+      if (err) return cb(err);
+      cb(null, auctionPath);
+    });
   },
   filename: (req, file, cb) => {
-    // Create a unique filename with Date.now() to avoid naming conflicts
     cb(null, Date.now() + '-' + file.originalname);
   }
 });
@@ -19,7 +25,6 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// 10MB limit
 const limits = { fileSize: 10 * 1024 * 1024 };
 
 const upload = multer({
