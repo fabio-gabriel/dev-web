@@ -1,43 +1,43 @@
-const Auction = require('../model/auction')
-const fs = require('fs')
+const Auction = require("../model/auction");
+const ApplicationController = require("./applicationController");
+const fs = require("fs");
 //const Authentication = require('../services/authentication')
 
-class LeiloesController{
-
-  async index(req, res){
-    const auction = Auction.where({deleted: false})
+class LeiloesController extends ApplicationController {
+  async index(req, res) {
+    const auction = Auction.where({ deleted: false });
 
     let data = {
-      auctions: auction
-    }
-    res.status(200)
-    res.send(JSON.stringify(data))
+      auctions: auction,
+    };
+    res.status(200);
+    res.send(JSON.stringify(data));
   }
 
-  async yourAuctionsJSON(req, res){
+  async yourAuctionsJSON(req, res) {
     const username = req.query.username;
-    const auctions = Auction.where({seller: username});
+    const auctions = Auction.where({ seller: username });
 
     let data = {
-      auctions: auctions
-    }
-    res.status(200)
-    res.send(JSON.stringify(data))
+      auctions: auctions,
+    };
+    res.status(200);
+    res.send(JSON.stringify(data));
   }
 
-  async show(req, res){
+  async show(req, res) {
     const auctionId = parseInt(req.params.id);
     const auction = Auction.find(auctionId);
 
     let data = {
-      auction: auction
-    }
-    res.status(200)
-    res.send(JSON.stringify(data))
+      auction: auction,
+    };
+    res.status(200);
+    res.send(JSON.stringify(data));
   }
 
-  async create(req, res){
-    const params = req.body
+  async create(req, res) {
+    const params = req.body;
 
     let images = req.body.images || [];
 
@@ -45,7 +45,7 @@ class LeiloesController{
       let auctionDetails = {
         startDate: new Date(Date.now()),
         endDate: params.endDate,
-        reservedPrice: params.reservedPrice
+        reservedPrice: params.reservedPrice,
       };
       //let seller = getCurrentUserId(); //Implementar função para pegar id do vendedor
       //TODO
@@ -63,39 +63,35 @@ class LeiloesController{
         auctionDetails: auctionDetails,
         //seller: seller,
         images: images,
-        seller: null
-      })
+        seller: null,
+      });
 
       let data = {
-        auction: auction
-      }
+        auction: auction,
+      };
 
-      res.status(201)
-      return res.send(JSON.stringify(data))
+      res.status(201);
+      return res.send(JSON.stringify(data));
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
 
-      res.status(500)
+      res.status(500);
       //TODO send an HTML modal back or something
-      return res.send()
+      return res.send();
     }
   }
 
   async update(req, res) {
-    const params = req.body
+    const params = req.body;
 
-    let auction = Auction.find(req.params.id)
-
-    console.log(auction)
-
-    console.log(params)
+    let auction = Auction.find(req.params.id);
 
     try {
       let auctionDetails = {
         endDate: params.endDate,
-        reservedPrice: params.reservedPrice
+        reservedPrice: params.reservedPrice,
       };
-      let highestBid = null; 
+      let highestBid = null;
       let images = [];
       auction.update({
         name: params.name,
@@ -106,40 +102,38 @@ class LeiloesController{
         tags: params.tags,
         highestBid: highestBid,
         auctionDetails: auctionDetails,
-        images: null
-      })
+        images: null,
+      });
 
       let data = {
-        auction: auction
-      }
+        auction: auction,
+      };
 
-      res.status(200)
-      return res.send(JSON.stringify(data))
+      res.status(200);
+      return res.send(JSON.stringify(data));
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
 
-      res.status(500)
+      res.status(500);
       //TODO send an HTML modal back or something
-      return res.send()
+      return res.send();
     }
   }
 
   async delete(req, res) {
-    console.log('oi')
     try {
-      Auction.delete(req.params.id)
+      Auction.delete(req.params.id);
 
-      res.status(200)
-      return res.send()
+      res.status(200);
+      return res.send();
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
 
-      res.status(500)
+      res.status(500);
       //TODO send an HTML modal back or something
-      return res.send()
+      return res.send();
     }
   }
-
 }
 
-module.exports = new LeiloesController
+module.exports = new LeiloesController();
