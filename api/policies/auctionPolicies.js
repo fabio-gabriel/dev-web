@@ -9,7 +9,7 @@ class AuctionPolicies {
   }
 
   index() {
-    switch (this.logged_user.type) {
+    switch (this.logged_user.role) {
       case "admin":
         return true;
       case "user":
@@ -20,7 +20,7 @@ class AuctionPolicies {
   }
 
   show() {
-    switch (this.logged_user.type) {
+    switch (this.logged_user.role) {
       case "admin":
         return true;
       case "user":
@@ -31,35 +31,35 @@ class AuctionPolicies {
   }
 
   new() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   create() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   edit() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   update() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   delete() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;

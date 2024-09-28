@@ -87,15 +87,15 @@ class UserController extends ApplicationController {
       return res.end();
     }
 
-    let params = req.body.params;
+    let params = req.body;
 
     let user = User.create({
       name: params.name,
+      username: params.username,
       cpf: params.cpf,
-      identifier: params.identifier,
       email: params.email,
       password: params.password,
-      type: params.type,
+      role: params.role,
     });
 
     const data = {
@@ -133,16 +133,16 @@ class UserController extends ApplicationController {
       return res.end();
     }
 
-    let params = req.body.params;
-    let user = User.find(params.id);
+    let params = req.body;
+    let user = User.find(req.params.id);
 
     user.update({
       name: params.name,
       cpf: params.cpf,
-      identifier: params.identifier,
+      username: params.username,
       email: params.email,
       password: params.password,
-      type: params.type,
+      role: params.role,
     });
 
     const data = {

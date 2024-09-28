@@ -12,14 +12,14 @@ class UserPolicies {
   }
 
   index() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   show() {
-    switch (this.logged_user.type) {
+    switch (this.logged_user.role) {
       case "admin":
         return true;
       case "user":
@@ -30,21 +30,18 @@ class UserPolicies {
   }
 
   new() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   create() {
-    if (this.logged_user.type === "admin") {
-      return true;
-    }
-    return false;
+    return true;
   }
 
   edit() {
-    switch (this.logged_user.type) {
+    switch (this.logged_user.role) {
       case "admin":
         return true;
       case "user":
@@ -55,7 +52,7 @@ class UserPolicies {
   }
 
   update() {
-    switch (this.logged_user.type) {
+    switch (this.logged_user.role) {
       case "admin":
         return true;
       case "user":
@@ -66,14 +63,14 @@ class UserPolicies {
   }
 
   delete() {
-    if (this.logged_user.type === "admin") {
+    if (this.logged_user.role === "admin") {
       return true;
     }
     return false;
   }
 
   self_delete() {
-    switch (this.logged_user.type) {
+    switch (this.logged_user.role) {
       case "admin":
         return true;
       case "user":
