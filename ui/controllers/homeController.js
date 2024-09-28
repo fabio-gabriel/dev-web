@@ -19,6 +19,8 @@ class HomeController {
     }
   }
 
+  async login(req, res)
+
 }
 
 module.exports = new HomeController();

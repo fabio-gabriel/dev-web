@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/index.css">
+    <title>Leilões</title>
+</head>
+
+<body class="poppins-regular">
+    <%- include('partials/header.ejs') %>
+
+    <div class="bg-alternative py-5">
+        <div class="container-fluid px-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="container my-4">
+                    <div class="d-flex flex-column align-items-center">
+                        <% if (user && user.role === 'admin') { %>
+                            <a href="/gerenciar-usuarios" class="text-primary">Gerenciar Usuários</a>
+                            <a href="/gerenciar-leiloes" class="text-secondary">Gerenciar Leilões</a>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- Lista de Usuários -->
+                <div class="container my-4">
+                    <h2 class="text-center">Lista de Usuários</h2>
+                    <p class="text-center">Aqui estão todos os usuários registrados:</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th> <!-- Adicionando uma coluna para email, se necessário -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td><%= user.name %></td>
+                                    <td><%= user.email %></td> <!-- Exibindo email, remova se não necessário -->
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <script src="/scripts/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
