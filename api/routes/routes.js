@@ -32,17 +32,17 @@ const middleware = {
 
 router.get("/", HomeController.index);
 router.get("/Leiloes", LeiloesController.index);
-router.get(
-  "/leiloes/:id",
-  [middleware.authenticate, middleware.fileUpload],
-  LeiloesController.show
-);
+router.get("/leiloes/:id", middleware.fileUpload, LeiloesController.show);
 router.put(
   "/leiloes/:id",
   [middleware.authenticate, middleware.fileUpload],
   LeiloesController.update
 );
-router.delete("/leiloes/:id", LeiloesController.delete);
+router.delete(
+  "/leiloes/:id",
+  [middleware.authenticate, middleware.fileUpload],
+  LeiloesController.delete
+);
 router.post(
   "/leiloes/new",
   [middleware.authenticate, middleware.fileUpload],
@@ -53,13 +53,10 @@ router.get("/seusLeiloes", LeiloesController.yourAuctionsJSON);
 router.post("/login", HomeController.login);
 router.post("/logout", HomeController.logout);
 
-router.post("/users", UserController.usersJson);
-router.get("/administrative/users", UserController.index);
-router.get("/administrative/user/new", UserController.new);
-router.put("/administrative/user/edit", UserController.update);
-router.get("/administrative/user/edit/:id", UserController.edit);
-router.get("/administrative/user/:id", UserController.show);
-router.post("/administrative/user", UserController.create);
-router.delete("/administrative/user/:id", UserController.delete);
+router.get("/users", middleware.authenticate, UserController.index);
+router.get("/users/:id", middleware.authenticate, UserController.show);
+router.post("/users", UserController.create);
+router.put("/users/:id", middleware.authenticate, UserController.update);
+router.delete("/users/:id", middleware.authenticate, UserController.delete);
 
 module.exports = router;
