@@ -4,12 +4,8 @@ const LeiloesController = require("../controllers/leiloesController.js");
 const UserController = require("../controllers/userController.js");
 const Authenticate = require("../services/authentication.js");
 const upload = require("../services/uploadService.js");
-const cookieParser = require("cookie-parser");
-const bodyParser = require('body-parser');
-
 
 const router = express.Router();
-router.use(bodyParser.urlencoded({extended : true}))
 
 const middleware = {
   authenticate: function authenticate(req, res, next) {
