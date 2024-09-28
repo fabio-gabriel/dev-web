@@ -4,12 +4,17 @@ const LeiloesController = require("../controllers/leiloesController.js");
 const UserController = require("../controllers/userController.js");
 const Authenticate = require("../services/authentication.js");
 const upload = require("../services/uploadService.js");
+const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser');
+
 
 const router = express.Router();
+router.use(bodyParser.urlencoded({extended : true}))
 
 const middleware = {
   authenticate: function authenticate(req, res, next) {
-    const session_token = req.cookies["session_token"];
+    console.log(req.cookies)
+    const session_token = req.cookies.session_token;
 
     if (!session_token) {
       res.status(401);
@@ -58,5 +63,10 @@ router.get("/users/:id", middleware.authenticate, UserController.show);
 router.post("/users", UserController.create);
 router.put("/users/:id", middleware.authenticate, UserController.update);
 router.delete("/users/:id", middleware.authenticate, UserController.delete);
+
+router.get('/validate-token', middleware.authenticate, (req, res) => {
+  const user = res.locals.user; // O usuário já foi autenticado pelo middleware
+  return res.json({ user });
+});
 
 module.exports = router;

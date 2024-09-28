@@ -1,18 +1,21 @@
 const axios = require("axios").default;
 const user1 = { id: 1, username: "pimenta", role: "admin" };
 const user2 = { id: 2, username: "fabio", role: "user" };
+const ApplicationController = require('./applicationController');
 const userV = user1;
 const activeUser = userV;
 
-class LeiloesController {
+class LeiloesController extends ApplicationController {
+
   async index(req, res) {
     try {
       let response = await axios.get("http://localhost:8084/");
       let jsonRes = response.data;
+      const current_user = super.define_user(res)
       res.render("leiloes", {
         title: "Leilões",
         auctions: jsonRes.auctions,
-        user: userV,
+        user: current_user,
       });
     } catch (error) {
       console.log(error.message);
@@ -21,12 +24,13 @@ class LeiloesController {
 
   async index_criaoleilao(req, res) {
     try {
+      const current_user = super.define_user(res)
       let response = await axios.get("http://localhost:8084/");
       let jsonRes = response.data;
       res.render("criarLeilao", {
         title: "Criar Leilão",
         auctions: jsonRes.auctions,
-        user: userV,
+        user: current_user,
       });
     } catch (error) {
       console.log(error.message);
@@ -49,7 +53,6 @@ class LeiloesController {
       });
 
       let jsonRes = response.data;
-      console.log("Dados enviados");
       res.send("Leilão criado");
     } catch (error) {
       console.log(error.message);
@@ -59,7 +62,6 @@ class LeiloesController {
 
   async update(req, res) {
     let params = req.query;
-    console.log(params);
     try {
       const auctionId = req.params.id;
       let response = await axios.put(
@@ -76,14 +78,18 @@ class LeiloesController {
   async show(req, res) {
     try {
       const auctionId = req.params.id;
-      let response = await axios.get(
-        `http://localhost:8084/leiloes/${auctionId}`,
-      );
+      const current_user = super.define_user(res)
+      const session_token = req.cookies["session_token"];
+      let response = await axios.get(`http://localhost:8084/leiloes/${auctionId}`, {
+        headers: {
+          'Cookie': `session_token=${session_token}`
+        }
+      });
       let jsonRes = response.data;
       res.render("produto", {
         title: "Leilao",
         auction: jsonRes.auction,
-        user: userV,
+        user: current_user,
       });
     } catch (error) {
       console.log(error.message);
@@ -106,7 +112,8 @@ class LeiloesController {
   async yourAuctionsJSON(req, res) {
     try {
       let jsonRes = { auctions: undefined };
-      if (activeUser) {
+      const current_user = super.define_user(res)
+      if (current_user) {
         let response = await axios.get("http://localhost:8084/seusLeiloes", {
           params: { username: activeUser.username },
         });
@@ -114,7 +121,7 @@ class LeiloesController {
       }
       res.render("seusLeiloes", {
         title: "Seus Leiloes",
-        user: activeUser,
+        user: current_user,
         auctions: jsonRes.auctions,
       });
     } catch (error) {
@@ -125,6 +132,7 @@ class LeiloesController {
   async edit(req, res) {
     try {
       const auctionId = req.params.id;
+      const current_user = super.define_user(res)
       let response = await axios.get(
         `http://localhost:8084/leiloes/${auctionId}`,
       );
@@ -132,7 +140,7 @@ class LeiloesController {
       res.render("editarLeilao", {
         title: "Editar Leilão",
         auction: jsonRes.auction,
-        user: userV,
+        user: current_user
       });
     } catch (error) {
       console.log(error.message);

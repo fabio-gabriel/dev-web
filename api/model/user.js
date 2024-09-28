@@ -233,7 +233,7 @@ class User {
     }
     if (deleted) {
       users_data = users_data.filter((element) =>
-        element["deleted"].includes(deleted)
+        element["deleted"] === deleted
       );
     }
 

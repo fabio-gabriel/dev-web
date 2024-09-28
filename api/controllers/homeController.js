@@ -13,6 +13,8 @@ class HomeController {
     res.send(JSON.stringify(data));
   }
 
+  
+
   async login(req, res) {
     const email = req.body["email"];
     const password = req.body["password"];
@@ -36,6 +38,23 @@ class HomeController {
     Authentication.logout(session_token);
     res.status(200);
     return res.end();
+  }
+
+  async validateTokenAuth(req, res) {
+    const session_token = req.cookies["session_token"]
+    const user = Authentication.validate_token(session_token)
+
+    if(user){
+      const data = {
+        user: user
+      }
+      res.status(200)
+      res.send(JSON.stringify(data))
+      return res.end()
+    }
+    
+    res.status(401)
+    return res.end()
   }
 }
 

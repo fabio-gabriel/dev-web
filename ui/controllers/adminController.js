@@ -28,7 +28,9 @@ class AdminController extends ApplicationController {
     async users(req, res) {
         const current_user = super.define_user(res);
         try {
+            console.log('tentando pegar users')
             let response = await axios.get("http://localhost:8084/users");
+            console.log('pegou essa porra')
             let jsonRes = response.data;
             res.render("adminUsers", {
                 title: "Admin - Usuários",

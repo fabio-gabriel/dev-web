@@ -28,15 +28,15 @@
                         <div class="px-5 ms-xl-4">
                             <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entre na sua conta</h3>
 
-                            <form>
+                            <form action="/login" method="POST">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="user-email">Digite seu Email</label>
-                                    <input type="email" id="user-email" class="form-control form-control-lg">
+                                    <input name="email" type="email" id="user-email" class="form-control form-control-lg">
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="password-user">Digite sua senha</label>
-                                    <input type="password" id="password-user" class="form-control form-control-lg">
+                                    <input type="password" id="password-user" class="form-control form-control-lg" name="password">
                                 </div>
 
                                 <div class="pt-2 mb-4">
