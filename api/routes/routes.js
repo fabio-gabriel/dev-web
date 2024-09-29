@@ -9,7 +9,8 @@ const router = express.Router();
 
 const middleware = {
   authenticate: function authenticate(req, res, next) {
-    const session_token = req.cookies.session_token;
+    console.log(req)
+    const session_token = req.cookies.session_token || req.body.headers.Cookie;
 
     if (!session_token) {
       res.status(401);
@@ -27,7 +28,27 @@ const middleware = {
     next();
   },
 
-  fileUpload: upload.array("file", 3),
+  fileUpload: function (req, res, next) {
+    console.log("File upload middleware called"); // Para verificar se o middleware está sendo chamado
+    //console.log("Files uploaded:", req.files); // Isso deve mostrar os arquivos enviados
+    //console.log("Body data:", req.body); // Isso deve mostrar os dados do corpo do pedido
+
+    upload.array("images", 3)(req, res, (err) => {
+      if (err) {
+        console.error("Upload error:", err); // Log de erro
+        return res.status(400).send(err.message);
+      }
+
+      // Log para verificar se os arquivos foram processados
+      console.log("Files uploaded:", req.files); // Isso deve mostrar os arquivos enviados
+      console.log("Body data:", req.body); // Isso deve mostrar os dados do corpo do pedido
+
+      // Verificar se 'images' é um campo de texto
+      console.log("Images field data:", req.body.images);
+
+      next();
+    });
+  },
 };
 
 router.get("/", HomeController.index);

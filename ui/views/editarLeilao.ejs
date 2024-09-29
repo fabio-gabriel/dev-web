@@ -22,7 +22,7 @@
                 &lt;- Retornar para os seus leilões</a>
             <div class="form-container mt-2">
                 <h2>Crie seu leilão</h2>
-                <form action="/leiloes/<%= auction.id %>" method="GET" enctype="multipart/form-data" id="forms">
+                <form action="/leiloes/<%= auction.id %>" method="POST" enctype="multipart/form-data" id="forms">
                     <div class="mb-3">
                         <label for="category">Selecione a Categoria do produto</label>
                         <select class="form-select" id="category" name="category">
@@ -43,7 +43,6 @@
                                 <option value="<%= category %>" <%= auction.category === category ? 'selected' : '' %>><%= category %></option>
                             <% }); %>
                         </select>
-                        
                     </div>
 
                     <div class="mb-3">
@@ -67,8 +66,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleFormControlFile1">Insira uma imagem do produto</label>
-                        <input type="file" name="filename" class="form-control-file" id="exampleFormControlFile1">
+                        <label for="exampleFormControlFile1">Insira as imagens do produto (Máximo 3):</label>
+                        <input type="file" name="images" class="form-control-file" id="exampleFormControlFile1" multiple>
                     </div>
 
                     <div class="mb-3">
@@ -84,6 +83,39 @@
 
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>
+
+    
+    <script>
+        /*async function editarLeilao() {
+            console.log('oi');
+            const form = document.getElementById('forms');
+            
+            // Obtendo o token da sessão a partir dos cookies
+            const session_token = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('session_token='))
+                ?.split('=')[1];
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await axios.put('http://localhost:8084/leiloes/<%= auction.id %>', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Cookie': `${session_token}`
+                    }
+                });
+                console.log('Leilão editado com sucesso:', response.data);
+            } catch (error) {
+                console.error('Erro ao editar leilão:', error.message);
+            }
+        }
+
+        // Previne o envio padrão do formulário e chama a função de editar
+        document.getElementById('forms').addEventListener('submit', function(event) {
+            editarLeilao(); 
+        });*/
+    </script>
 </body>
 
 </html>

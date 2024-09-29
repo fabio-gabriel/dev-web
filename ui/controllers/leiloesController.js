@@ -4,6 +4,7 @@ const user2 = { id: 2, username: "fabio", role: "user" };
 const ApplicationController = require('./applicationController');
 const userV = user1;
 const activeUser = userV;
+const FormData = require('form-data');
 
 class LeiloesController extends ApplicationController {
 
@@ -62,13 +63,33 @@ class LeiloesController extends ApplicationController {
 
   async update(req, res) {
     const session_token = req.cookies["session_token"];
-    let params = req.query;
+    let params = req.body;
+    let files = req.files
+    const formData = new FormData();
+
+    for (const key in req.body) {
+        formData.append(key, req.body[key]);
+    }
+
+    for (const file of req.files) {
+        formData.append("images", file.buffer, { filename: file.originalname }); // Se você estiver usando multer com buffer
+    }
+
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+  }
+
     try {
       const auctionId = req.params.id;
       let response = await axios.put(
         `http://localhost:8084/leiloes/${auctionId}`,
-        {headers: { 'Cookie': `session_token=${session_token}` }},
-        params,
+        formData,
+        {
+          headers: { 
+            'Cookie': `${session_token}`,
+          },
+          params: params
+        }
       );
       let jsonRes = response.data;
       res.send("leilao editado");

@@ -71,10 +71,10 @@ router.get("/seusLeiloes", LeiloesController.yourAuctionsJSON);
 router.get("/leiloes", LeiloesController.index);
 router.get("/leilao/:id", LeiloesController.show);
 router.get("/leiloes/new", LeiloesController.index_criaoleilao);
-router.post("/leiloes/new", upload.array("file", 3), LeiloesController.create);
+router.post("/leiloes/new", upload.array("images", 3), LeiloesController.create);
 
 router.get("/leilao/:id/editar", LeiloesController.edit);
-router.get("/leiloes/:id", upload.array("file", 3), LeiloesController.update);
+router.post("/leiloes/:id", upload.array("images", 3), LeiloesController.update);
 router.post("/leilao/:id/deletar", LeiloesController.delete);
 
 router.get('/login', verify_user_logged, HomeController.login_page)

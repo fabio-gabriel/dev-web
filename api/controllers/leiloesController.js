@@ -82,9 +82,9 @@ class LeiloesController extends ApplicationController {
   }
 
   async update(req, res) {
-    const params = req.body;
-
+    const params = req.body.params
     let auction = Auction.find(req.params.id);
+    let images = params.images || [];
 
     try {
       let auctionDetails = {
@@ -92,7 +92,6 @@ class LeiloesController extends ApplicationController {
         reservedPrice: params.reservedPrice,
       };
       let highestBid = null;
-      let images = [];
       auction.update({
         name: params.name,
         conservation: params.conservation,
@@ -102,7 +101,7 @@ class LeiloesController extends ApplicationController {
         tags: params.tags,
         highestBid: highestBid,
         auctionDetails: auctionDetails,
-        images: null,
+        images: images,
       });
 
       let data = {
