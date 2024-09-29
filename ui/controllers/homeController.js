@@ -69,6 +69,36 @@ async logout(req, res){
   return res.end() 
 }
 
+async register_page(req, res) {
+  try {
+    res.render("register", {
+      title: "Registre-se",
+    });
+    }
+    catch (error) {
+      console.log(error.message)
+  }
+}
+
+async register(req, res) {
+  try {
+      let name = req.body.name; 
+      let username = req.body.username;
+      let email = req.body.email;
+      let cpf = req.body.cpf;
+      let password = req.body.password; 
+      let vars = { name: name, username: username, email: email, cpf: cpf, password: password, role: "user" };
+
+      let response = await axios.put("http://localhost:8084/users", vars);
+      let jsonRes = response.data;
+
+      res.render('Conta criada com sucesso')
+      
+  } catch (error) {
+      console.log(error.message);
+  }
+}
+
 }
 
 module.exports = new HomeController();

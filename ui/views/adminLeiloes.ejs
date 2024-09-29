@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/index.css">
+    <title>Admin - Leilões</title>
+</head>
+
+<body class="poppins-regular">
+    <%- include('partials/header.ejs') %>
+
+    <div class="bg-alternative py-5">
+        <div class="container-fluid px-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-12 col-md-2 mb-4">
+                    <p><strong>Categorias</strong></p>
+                    <div class="categories-list">
+                        <a href="#" class="category-link" onclick="updateCategory('all')">Todos</a>
+                        <a href="#" class="category-link" onclick="updateCategory('Artes')">Artes</a>
+                        <a href="#" class="category-link" onclick="updateCategory('Antiguidades')">Antiguidades</a>
+                        <a href="#" class="category-link" onclick="updateCategory('Livros e Mídia')">Livros e Mídia</a>
+                      </div>
+                </div>
+
+                <!-- Grid -->
+                <div class="col-12 col-md-10">
+                    <!-- Container para exibir os leilões -->
+                    <div class="container">
+                        <div id="leiloes-container" class="row">
+                            <!-- Leilões serão carregados dinamicamente aqui -->
+                        </div>
+
+                        <!-- Paginação -->
+                        <nav aria-label="Page navigation">
+                            <ul id="pagination" class="pagination justify-content-center">
+                                <!-- Botões de paginação serão carregados dinamicamente -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <script src="/scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="/scripts/card_leilao_edit.js"></script>
+    
+    <script>
+        const auctions = <%- JSON.stringify(auctions) %>;
+        const itemsPerPage = 6;  // Número de leilões por página
+        let currentPage = 1;  // Página inicial
+    </script>
+</body>
+
+</html>

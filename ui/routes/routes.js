@@ -15,28 +15,6 @@ const axios = require("axios").default;
 
 const router = express.Router();
 
-router.use(authenticate);
-
-// Home routes
-router.get("/", HomeController.index);
-
-router.get("/seusLeiloes", LeiloesController.yourAuctionsJSON);
-router.get("/leiloes", LeiloesController.index);
-router.get("/leilao/:id", LeiloesController.show);
-router.get("/leiloes/new", LeiloesController.index_criaoleilao);
-router.post("/leiloes/new", upload.array("file", 3), LeiloesController.create);
-
-router.get("/leilao/:id/editar", LeiloesController.edit);
-router.get("/leiloes/:id", upload.array("file", 3), LeiloesController.update);
-router.post("/leilao/:id/deletar", LeiloesController.delete);
-
-router.get('/login', verify_user_logged, HomeController.login_page)
-router.post("/login", HomeController.login);
-router.post('/logout', HomeController.logout)
-
-router.get('/admin', AdminController.index)
-router.get('/admin/users', AdminController.users)
-
 async function authenticate(req, res, next) {
   const session_token = req.cookies["session_token"];
   
@@ -53,7 +31,6 @@ async function authenticate(req, res, next) {
       }
     });
     const user = response.data.user;
-    console.log(user)
     res.locals.user = user; // Usuário autenticado
   } catch (error) {
     // Em caso de erro na requisição, considere o usuário como não logado
@@ -84,5 +61,33 @@ async function authenticate(req, res, next) {
     
     return res.end() 
   }
+
+router.use(authenticate);
+
+// Home routes
+router.get("/", HomeController.index);
+
+router.get("/seusLeiloes", LeiloesController.yourAuctionsJSON);
+router.get("/leiloes", LeiloesController.index);
+router.get("/leilao/:id", LeiloesController.show);
+router.get("/leiloes/new", LeiloesController.index_criaoleilao);
+router.post("/leiloes/new", upload.array("file", 3), LeiloesController.create);
+
+router.get("/leilao/:id/editar", LeiloesController.edit);
+router.get("/leiloes/:id", upload.array("file", 3), LeiloesController.update);
+router.post("/leilao/:id/deletar", LeiloesController.delete);
+
+router.get('/login', verify_user_logged, HomeController.login_page)
+router.post("/login", HomeController.login);
+router.post('/logout', HomeController.logout)
+router.get('/register', HomeController.register_page)
+router.post('/register', HomeController.register)
+
+router.get('/admin', AdminController.index)
+router.get('/admin/users', AdminController.users)
+router.get('/admin/auctions', AdminController.auctions)
+router.post('/admin/users/:id', AdminController.edit_user)
+router.get('/admin/users/:id', AdminController.edit_user_page)
+router.post('/admin/users/delete/:id', AdminController.delete_user)
 
 module.exports = router;

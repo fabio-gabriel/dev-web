@@ -9,7 +9,6 @@ const router = express.Router();
 
 const middleware = {
   authenticate: function authenticate(req, res, next) {
-    console.log(req.cookies)
     const session_token = req.cookies.session_token;
 
     if (!session_token) {

@@ -61,11 +61,13 @@ class LeiloesController extends ApplicationController {
   }
 
   async update(req, res) {
+    const session_token = req.cookies["session_token"];
     let params = req.query;
     try {
       const auctionId = req.params.id;
       let response = await axios.put(
         `http://localhost:8084/leiloes/${auctionId}`,
+        {headers: { 'Cookie': `session_token=${session_token}` }},
         params,
       );
       let jsonRes = response.data;
@@ -80,7 +82,7 @@ class LeiloesController extends ApplicationController {
       const auctionId = req.params.id;
       const current_user = super.define_user(res)
       const session_token = req.cookies["session_token"];
-      let response = await axios.get(`http://localhost:8084/leiloes/${auctionId}`, {
+      let response = await axios.get(`http://localhost:8084/users/${auctionId}`, {
         headers: {
           'Cookie': `session_token=${session_token}`
         }
@@ -98,9 +100,12 @@ class LeiloesController extends ApplicationController {
 
   async delete(req, res) {
     try {
+      const session_token = req.cookies["session_token"];
+      const current_user = super.define_user(res)
       const auctionId = req.params.id;
       let response = await axios.delete(
         `http://localhost:8084/leiloes/${auctionId}`,
+        {headers: { 'Cookie': `session_token=${session_token}` }},
       );
       let jsonRes = response.data;
       res.send("Leilão deletado");
@@ -113,9 +118,10 @@ class LeiloesController extends ApplicationController {
     try {
       let jsonRes = { auctions: undefined };
       const current_user = super.define_user(res)
+      console.log(current_user)
       if (current_user) {
         let response = await axios.get("http://localhost:8084/seusLeiloes", {
-          params: { username: activeUser.username },
+          params: { username: current_user.username },
         });
         jsonRes = response.data;
       }

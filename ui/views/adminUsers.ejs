@@ -18,36 +18,32 @@
 
     <div class="bg-alternative py-5">
         <div class="container-fluid px-5">
+            <h2 class="text-center fw-bold">Lista de Usuários</h2>
+            <p class="text-center">Aqui estão todos os usuários registrados:</p>
+            <button class = "btn btn-primary">+ Criar usuário</button>
             <div class="row">
-                <!-- Sidebar -->
+                <!-- Lista de Usuários em Cards -->
                 <div class="container my-4">
-                    <div class="d-flex flex-column align-items-center">
-                        <% if (user && user.role === 'admin') { %>
-                            <a href="/gerenciar-usuarios" class="text-primary">Gerenciar Usuários</a>
-                            <a href="/gerenciar-leiloes" class="text-secondary">Gerenciar Leilões</a>
-                        <% } %>
+                    <div class="row">
+                        <% users.forEach(user => { %>
+                            <div class="col-lg-4 col-md-6 mb-4"> <!-- 3 cards por linha -->
+                                <div class="card border">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title"><%= user.name %></h5>
+                                        <p class="card-text">Email: <%= user.email %></p>
+                                        <p class="card-text">Username: <%= user.username %></p>
+                                        <p class="card-text">Role: <%= user.role %></p>
+                                        <div class="d-flex justify-content-around">
+                                            <a href="/admin/users/<%= user.id %>" class="btn btn-warning">Editar</a>
+                                            <form action="/admin/users/delete/<%= user.id %>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-danger">Deletar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
                     </div>
-                </div>
-                <!-- Lista de Usuários -->
-                <div class="container my-4">
-                    <h2 class="text-center">Lista de Usuários</h2>
-                    <p class="text-center">Aqui estão todos os usuários registrados:</p>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Email</th> <!-- Adicionando uma coluna para email, se necessário -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% users.forEach(user => { %>
-                                <tr>
-                                    <td><%= user.name %></td>
-                                    <td><%= user.email %></td> <!-- Exibindo email, remova se não necessário -->
-                                </tr>
-                            <% }) %>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -55,7 +51,6 @@
 
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
