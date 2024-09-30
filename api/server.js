@@ -4,6 +4,14 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const app = express();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:8085",  
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],         
+    credentials: true                 
+  }});
 const port = process.env.PORT_API;
 
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +34,22 @@ app.use("/images", express.static("data/images"));
 const routes = require("./routes/routes");
 app.use("/", routes);
 
-app.listen(port, function () {
+io.on("connection", (socket) => {
+  console.log("A user connected:", socket.id);
+
+  // Listen for bid updates from the client
+  socket.on("new_bid", (data) => {
+    console.log("New bid received:", data);
+
+    // Broadcast the new bid to all connected clients
+    io.emit("update_bid", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
+
+server.listen(port, function () {
   console.log("Server listening on port " + port);
 });

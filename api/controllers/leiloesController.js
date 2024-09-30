@@ -6,7 +6,6 @@ const fs = require("fs");
 class LeiloesController extends ApplicationController {
   async index(req, res) {
     const auction = Auction.where({ deleted: false });
-    console.log(auction)
 
     let data = {
       auctions: auction,
@@ -38,7 +37,6 @@ class LeiloesController extends ApplicationController {
   }
 
   async create(req, res) {
-    console.log(res)
     const params = req.body;
 
     let images = req.files.map(file => file.filename) || [];
@@ -94,8 +92,6 @@ class LeiloesController extends ApplicationController {
     const params = req.body
     let auction = Auction.find(req.params.id);
     let images = req.files.map(file => file.filename) || [];
-    console.log(params)
-    console.log(req)
 
     try {
       let auctionDetails = {

@@ -22,9 +22,6 @@ class UserController extends ApplicationController {
     let params = req.body;
     let files = req.files;
 
-    console.log("Dados do formulário:", params);
-    console.log("Arquivos recebidos:", files);
-
     try {
       let images = files.map((file) => file.originalname);
 

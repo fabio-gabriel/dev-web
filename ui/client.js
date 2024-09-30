@@ -9,8 +9,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.set("view engine", "ejs");
-
 app.use(express.static(path.join(__dirname, "/public")));
+
+app.use(
+  "/socket.io",
+  express.static(path.join(__dirname, "node_modules/socket.io-client/dist/"))
+);
 
 const routes = require("./routes/routes");
 app.use("/", routes);

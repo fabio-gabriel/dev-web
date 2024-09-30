@@ -8,9 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet">
-    <title>Auction Item</title>
+    <title>Auction <%= auction.name %></title>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/produto.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
                 <div class="d-flex justify-content-around align-items-center p-1 border">
                     <div>
                         <p class="mb-0"><strong>Maior lance:</strong></p>
-                        <h4 class="bid-text"><%= auction.highestBid.value %></h4>
+                        <h4 class="bid-text" id="currentBid"><%= auction.highestBid.value %></h4>
                     </div>
 
                     <div class="text-center">
@@ -58,7 +59,7 @@
                 <p><strong>Estado:</strong> <%= auction.conservation %></p>
                 <p><strong>Categoria:</strong> <%= auction.category %></p>
                 <p><strong>Descrição:</strong> <%= auction.description %></p>
-                <form action="/bid/<%= auction.id %>" method="POST" id="bid-form">
+                <form onsubmit="event.preventDefault(); submitBid();" action="/bid/<%= auction.id %>" method="POST" id="bid-form">
 
                     <label for="value"><strong>Seu lance</strong></label>
                     <div class="d-flex">
@@ -69,6 +70,24 @@
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </div>
                 </form>
+                
+                <script>
+                    const socket = io('http://localhost:8084'); 
+
+                    socket.on('update_bid', function(data) {
+                        console.log('Bid updated:', data);
+                        document.getElementById('currentBid').innerText = `${data.value}`;
+                    });
+
+                    function submitBid() {
+                        const bidAmount = document.getElementById('value').value;
+
+                        const bidData = {
+                            value: bidAmount,
+                        };
+                        socket.emit('new_bid', bidData);
+                    }
+                </script>
 
             </div>
         </div>
@@ -141,3 +160,4 @@
 </body>
 
 </html>
+

@@ -51,9 +51,6 @@ class LeiloesController extends ApplicationController {
     let params = req.body;
     let files = req.files;
 
-    console.log("Dados do formulário:", params);
-    console.log("Arquivos recebidos:", files);
-
     try {
       let images = files.map((file) => file.originalname);
 
@@ -127,11 +124,9 @@ class LeiloesController extends ApplicationController {
 
   async delete(req, res) {
     try {
-      console.log('tentando deletar')
       const session_token = req.cookies["session_token"];
       const current_user = super.define_user(res)
       const auctionId = req.params.id;
-      console.log(auctionId)
       let response = await axios.delete(
         `http://localhost:8084/leiloes/${auctionId}`,
         {headers: { 'Cookie': `session_token=${session_token}` }},
@@ -183,7 +178,6 @@ class LeiloesController extends ApplicationController {
 
   async bid (req, res) {
     try {
-      console.log(req)
       const auctionId = req.params.id;
       const current_user = super.define_user(res)
       const session_token = req.cookies["session_token"];
