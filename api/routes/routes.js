@@ -84,4 +84,6 @@ router.get('/validate-token', middleware.authenticate, (req, res) => {
   return res.json({ user });
 });
 
+router.put("/bid/:id", LeiloesController.bid)
+
 module.exports = router;

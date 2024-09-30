@@ -146,7 +146,6 @@ class LeiloesController extends ApplicationController {
     try {
       let jsonRes = { auctions: undefined };
       const current_user = super.define_user(res)
-      console.log(current_user)
       if (current_user) {
         let response = await axios.get("http://localhost:8084/seusLeiloes", {
           params: { username: current_user.username },
@@ -178,6 +177,25 @@ class LeiloesController extends ApplicationController {
       });
     } catch (error) {
       console.log(error.message);
+    }
+  }
+
+  async bid (req, res) {
+    try {
+      console.log(req)
+      const auctionId = req.params.id;
+      const current_user = super.define_user(res)
+      const session_token = req.cookies["session_token"];
+      let params = req.body;
+      if (current_user) {
+        let response = await axios.put(`http://localhost:8084/bid/${auctionId}`, {
+          ...params,
+          user: current_user
+        });
+      }
+      res.redirect(`/leilao/${auctionId}`)
+    } catch (error) {
+      console.log(error.message)
     }
   }
 }

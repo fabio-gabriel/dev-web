@@ -94,4 +94,6 @@ router.post('/admin/users/:id', AdminController.edit_user)
 router.get('/admin/users/:id', AdminController.edit_user_page)
 router.post('/admin/users/delete/:id', AdminController.delete_user)
 
+router.post('/bid/:id', LeiloesController.bid)
+
 module.exports = router;

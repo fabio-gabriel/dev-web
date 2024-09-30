@@ -135,6 +135,43 @@ class LeiloesController extends ApplicationController {
       return res.send();
     }
   }
+
+  async bid(req, res) {
+    try {
+      const params = req.body
+      const auctionId = parseInt(req.params.id);
+      const auction = Auction.find(auctionId);
+      let highestBid = {
+        value: params.value,
+        account: params.user.username,
+        timestamp: new Date()
+      }
+
+      auction.update({
+        name: auction.name,
+        conservation: auction.conservation,
+        description: auction.description,
+        category: auction.category,
+        location: auction.location,
+        tags: auction.tags,
+        highestBid: highestBid,
+        auctionDetails: auction.auctionDetails,
+        images: auction.images,
+      });
+
+      let data = {
+        auction: auction,
+      };
+
+      res.status(200);
+      return res.send(JSON.stringify(data));
+    }
+    catch (error) {
+      console.log(error.message);
+      res.status(500);
+      return res.send();
+    }
+  }
 }
 
 module.exports = new LeiloesController();
