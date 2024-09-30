@@ -37,6 +37,7 @@ class LeiloesController extends ApplicationController {
   }
 
   async create(req, res) {
+    console.log(res)
     const params = req.body;
 
     let images = req.files.map(file => file.filename) || [];
@@ -47,12 +48,20 @@ class LeiloesController extends ApplicationController {
         endDate: params.endDate,
         reservedPrice: params.reservedPrice,
       };
-      //let seller = getCurrentUserId(); //Implementar função para pegar id do vendedor
-      //TODO
-      // let seller = getCurrentUserId(); Implementar função para pegar id do vendedor
-      let highestBid = null; //Fazer função
+      let seller = {
+        username: res.locals.user.username,
+        contactInfo: {
+          email: res.locals.user.email,
+          phone: "+1234567890"
+        }
+      }
+      let highestBid = {
+        value: params.reservedPrice,
+        account: null,
+        timestamp: new Date()
+      }
       let auction = Auction.create({
-        //TODO seller, images and should be auto populated by the server. Tags need to be parsed to become an array
+        //Tags need to be parsed to become an array
         name: params.name,
         conservation: params.conservation,
         description: params.description,
@@ -61,7 +70,6 @@ class LeiloesController extends ApplicationController {
         tags: params.tags,
         highestBid: highestBid,
         auctionDetails: auctionDetails,
-        //seller: seller,
         images: images,
         seller: null,
       });
