@@ -1,7 +1,5 @@
 const axios = require("axios").default;
 const ApplicationController = require("./applicationController");
-const userV = user1;
-const activeUser = userV;
 const FormData = require("form-data");
 const multer = require("multer");
 
