@@ -21,23 +21,25 @@
             <div class="container-fluid px-5">
                 <div class="row">
                     <!-- Sidebar -->
-                    <div class="col-12 col-md-2">
-                        <p><strong>Bem-vindo <%= user.username %></strong></p>
-                        <div>ID: <%= user.id %><i class="bi bi-pen"></i> <br>role: <%= user.role %> <br>Infos do USER 3</div>
+                    <div class="col-12 col-md-2 mb-4">
+                        <p><strong>Categorias</strong></p>
+                        <div class="categories-list">
+                            <a href="#" class="category-link" onclick="updateCategory('all')">Todos</a>
+                            <a href="#" class="category-link" onclick="updateCategory('Artes')">Artes</a>
+                            <a href="#" class="category-link" onclick="updateCategory('Antiguidades')">Antiguidades</a>
+                            <a href="#" class="category-link" onclick="updateCategory('Livros e Mídia')">Livros e Mídia</a>
+                          </div>
                     </div>
     
                     <!-- Grid -->
                     <div class="col-12 col-md-10">
-                        <a href="/leiloes/new" class = "btn btn-primary">+ Criar Leilão</a>
-                        <!-- Container sets a standard maximum width -->
-                        <div id="leiloes-container" class="container">
-                            <h3 class="poppins-bold">Meus Leilões</h3>
-                            <a href="criarLeilao.html" class="btn btn-primary mb-3">+ Criar leilão</a>
-                            <div class="row">
-                                    <div class="col-12 col-md-4 mb-4">
-                                    </div>
+                        <!-- Container para exibir os leilões -->
+                        <div class="container">
+                            <div id="leiloes-container" class="row">
+                                <!-- Leilões serão carregados dinamicamente aqui -->
                             </div>
-
+    
+                            <!-- Paginação -->
                             <nav aria-label="Page navigation">
                                 <ul id="pagination" class="pagination justify-content-center">
                                     <!-- Botões de paginação serão carregados dinamicamente -->
@@ -55,7 +57,7 @@
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>
 
-    <script src="/scripts/card_leilao_edit.js"></script>
+    <script src="/scripts/pagination-filter.js"></script>
     
     <script>
         const auctions = <%- JSON.stringify(auctions) %>;

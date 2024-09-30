@@ -20,6 +20,7 @@ class LeiloesController extends ApplicationController {
     try {
       let response = await axios.get("http://localhost:8084/Leiloes");
       let jsonRes = response.data;
+      console.log(jsonRes.auctions)
       const current_user = super.define_user(res)
       res.render("leiloes", {
         title: "Leilões",

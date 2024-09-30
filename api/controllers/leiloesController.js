@@ -6,6 +6,7 @@ const fs = require("fs");
 class LeiloesController extends ApplicationController {
   async index(req, res) {
     const auction = Auction.where({ deleted: false });
+    console.log(auction)
 
     let data = {
       auctions: auction,
@@ -66,12 +67,12 @@ class LeiloesController extends ApplicationController {
         conservation: params.conservation,
         description: params.description,
         category: params.category,
-        location: params.location,
-        tags: params.tags,
+        location: "a",
+        tags: ["a"],
         highestBid: highestBid,
         auctionDetails: auctionDetails,
         images: images,
-        seller: null,
+        seller: seller,
       });
 
       let data = {
