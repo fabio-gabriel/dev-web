@@ -1,8 +1,6 @@
 const axios = require("axios").default;
 const http = require("http");
 const ApplicationController = require('./applicationController');
-const user1 = { id: 1, username: "pimenta", role: "admin" };
-const user2 = { id: 2, username: "fabio", role: "user" };
 
 class HomeController extends ApplicationController {
 

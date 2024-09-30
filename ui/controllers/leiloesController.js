@@ -1,6 +1,4 @@
 const axios = require("axios").default;
-const user1 = { id: 1, username: "pimenta", role: "admin" };
-const user2 = { id: 2, username: "fabio", role: "user" };
 const ApplicationController = require("./applicationController");
 const userV = user1;
 const activeUser = userV;
