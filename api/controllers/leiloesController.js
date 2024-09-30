@@ -39,7 +39,7 @@ class LeiloesController extends ApplicationController {
   async create(req, res) {
     const params = req.body;
 
-    let images = req.files.map(file => file.filename) || [];
+    let images = req.files.map((file) => file.filename) || [];
 
     try {
       let auctionDetails = {
@@ -51,14 +51,14 @@ class LeiloesController extends ApplicationController {
         username: res.locals.user.username,
         contactInfo: {
           email: res.locals.user.email,
-          phone: "+1234567890"
-        }
-      }
+          phone: "+1234567890",
+        },
+      };
       let highestBid = {
         value: params.reservedPrice,
         account: null,
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      };
       let auction = Auction.create({
         //Tags need to be parsed to become an array
         name: params.name,
@@ -89,9 +89,9 @@ class LeiloesController extends ApplicationController {
   }
 
   async update(req, res) {
-    const params = req.body
+    const params = req.body;
     let auction = Auction.find(req.params.id);
-    let images = req.files.map(file => file.filename) || [];
+    let images = req.files.map((file) => file.filename) || [];
 
     try {
       let auctionDetails = {
@@ -143,14 +143,14 @@ class LeiloesController extends ApplicationController {
 
   async bid(req, res) {
     try {
-      const params = req.body
+      const params = req.body;
       const auctionId = parseInt(req.params.id);
       const auction = Auction.find(auctionId);
       let highestBid = {
         value: params.value,
         account: params.user.username,
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      };
 
       auction.update({
         name: auction.name,
@@ -170,8 +170,7 @@ class LeiloesController extends ApplicationController {
 
       res.status(200);
       return res.send(JSON.stringify(data));
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error.message);
       res.status(500);
       return res.send();

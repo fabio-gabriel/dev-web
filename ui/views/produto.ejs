@@ -59,35 +59,45 @@
                 <p><strong>Estado:</strong> <%= auction.conservation %></p>
                 <p><strong>Categoria:</strong> <%= auction.category %></p>
                 <p><strong>Descrição:</strong> <%= auction.description %></p>
-                <form onsubmit="event.preventDefault(); submitBid();" action="/bid/<%= auction.id %>" method="POST" id="bid-form">
+                <% if (user) { %>
+                    <form onsubmit="return handleFormSubmit();" action="/bid/<%= auction.id %>" method="POST" id="bid-form">
+                        <label for="value"><strong>Seu lance</strong></label>
+                        <div class="d-flex">
+                            <input type="text" name="value" id="value"
+                                pattern="^R\$\d{1,3}(\.\d{3})*(,\d{2})?$" value="" data-type="currency"
+                                placeholder="<%= auction.highestBid.value %>" required>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                    
+                    <script>
+                        const socket = io('http://localhost:8084'); 
+                    
+                        socket.on('update_bid', function(data) {
+                            console.log('Bid updated:', data);
+                            document.getElementById('currentBid').innerText = `${data.value}`;
+                        });
+                    
+                        async function handleFormSubmit() {
+                            const bidInput = document.getElementById('value').value;
+                            const bidAmount = parseFloat(bidInput.replace('R$', '').replace('.', '').replace(',', '.'));
+                            const currentHighestBid = parseFloat( document.getElementById('currentBid').innerText.replace('R$', '').replace('.', '').replace(',', '.') );
 
-                    <label for="value"><strong>Seu lance</strong></label>
-                    <div class="d-flex">
-                        <input type="text" name="value" id="value"
-                            pattern="^R\$\d{1,3}(\.\d{3})*(,\d{2})?$" value="" data-type="currency"
-                            placeholder="R$1.000,00" required>
+                            if (bidAmount <= currentHighestBid) {
+                                alert(`Your bid must be higher than the current highest bid of R$${currentHighestBid}`);
+                                return false; 
+                            }
 
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                </form>
-                
-                <script>
-                    const socket = io('http://localhost:8084'); 
-
-                    socket.on('update_bid', function(data) {
-                        console.log('Bid updated:', data);
-                        document.getElementById('currentBid').innerText = `${data.value}`;
-                    });
-
-                    function submitBid() {
-                        const bidAmount = document.getElementById('value').value;
-
-                        const bidData = {
-                            value: bidAmount,
-                        };
-                        socket.emit('new_bid', bidData);
-                    }
-                </script>
+                            const bidData = {
+                                value: bidInput,
+                            };
+                    
+                            socket.emit('new_bid', bidData);
+                    
+                            return true;
+                        }
+                    </script>
+                <% } %>
 
             </div>
         </div>
