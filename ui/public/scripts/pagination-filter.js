@@ -141,10 +141,17 @@ function setupCountdown(auction) {
 
 // Função de filtragem dos leilões com base na categoria
 function filterAuctions() {
-  if (selectedCategory === "all") {
-    return auctions; // Se "Todos" estiver selecionado, retorna todos os leilões
+
+  const now = new Date();
+  let filtered = auctions.filter(
+    (auction) => new Date(auction.auctionDetails.endDate) > now // Filtra leilões com endDate maior que a data atual
+  );
+
+  if (selectedCategory !== "all") {
+    filtered = filtered.filter((auction) => auction.category === selectedCategory);
   }
-  return auctions.filter((auction) => auction.category === selectedCategory);
+
+  return filtered;
 }
 
 // Função para atualizar a categoria selecionada e recarregar a exibição
