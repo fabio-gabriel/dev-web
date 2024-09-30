@@ -11,7 +11,7 @@ function createCard(auction) {
                     <div class="col-6 text-center border-end">
                         Lance:
                         <div class="bid-text">
-                            R$${auction.highestBid.value}
+                            ${auction.highestBid.value}
                         </div>
                     </div>
                     <div class="container col-6 text-center">
