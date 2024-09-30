@@ -52,8 +52,8 @@ function createCard(auction) {
 
 function deleteAuction(id) {
   if (confirm("Tem certeza que deseja deletar este leilão?")) {
-    fetch("/leilao/${id}/deletar", {
-      method: "DELETE",
+    fetch(`/leilao/${id}/deletar`, {
+      method: "POST",
     })
       .then((response) => {
         if (response.ok) {

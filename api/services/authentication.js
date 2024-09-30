@@ -5,15 +5,12 @@ const bcrypt = require("bcrypt");
 
 class Authenticate {
   static login(email, password) {
-    console.log(password)
     const user = User.where({ email: email })[0];
-    console.log(user)
 
     if (!user) { 
       return false;
     }
     
-    console.log(user.password)
 
     const hashDecrypt = bcrypt.compare(password, user.password);
 

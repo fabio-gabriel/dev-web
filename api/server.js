@@ -14,6 +14,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:8085"); // Permite requisições do localhost:8085
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Métodos permitidos
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Cabeçalhos permitidos
+  res.header("Access-Control-Allow-Credentials", "true")
   next();
 });
 

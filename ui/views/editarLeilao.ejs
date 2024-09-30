@@ -18,7 +18,7 @@
 
     <div class="container-gray">
         <div class="content-container">
-            <a href="seusLeiloes.html">
+            <a href="/seusLeiloes">
                 &lt;- Retornar para os seus leilões</a>
             <div class="form-container mt-2">
                 <h2>Crie seu leilão</h2>
@@ -61,13 +61,13 @@
 
                     <div class="mb-3">
                         <label for="productDescription">Descrição do Produto</label>
-                        <textarea class="form-control" name="descricao" id="description" rows="3"
+                        <textarea class="form-control" name="description" id="description" rows="3"
                             style="font-size: 12px;"> <%= auction.description %></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleFormControlFile1">Insira as imagens do produto (Máximo 3):</label>
-                        <input type="file" name="images" class="form-control-file" id="exampleFormControlFile1" multiple>
+                        <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" multiple>
                     </div>
 
                     <div class="mb-3">
@@ -83,38 +83,35 @@
 
     <%- include('partials/footer.ejs') %>
     <script src="/scripts/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    
     <script>
-        /*async function editarLeilao() {
-            console.log('oi');
-            const form = document.getElementById('forms');
-            
-            // Obtendo o token da sessão a partir dos cookies
-            const session_token = document.cookie
-                .split('; ')
-                .find(row => row.startsWith('session_token='))
-                ?.split('=')[1];
+    async function editarLeilao() {
+        const form = document.getElementById('forms');
+        const formData = new FormData(form);
 
-            const formData = new FormData(form);
+        try {
+            const response = await axios.put('http://localhost:8084/leiloes/<%= auction.id %>', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
 
-            try {
-                const response = await axios.put('http://localhost:8084/leiloes/<%= auction.id %>', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Cookie': `${session_token}`
-                    }
-                });
-                console.log('Leilão editado com sucesso:', response.data);
-            } catch (error) {
-                console.error('Erro ao editar leilão:', error.message);
-            }
+            // Emitir um alerta e redirecionar para a página desejada
+            alert('Leilão editado com sucesso!');
+            window.location.href = '/seusLeiloes'; // Altere para a URL para onde deseja redirecionar
+
+        } catch (error) {
+            console.error('Erro ao editar leilão:', error.message);
+            alert('Houve um erro ao editar o leilão. Tente novamente.');
         }
+    }
 
-        // Previne o envio padrão do formulário e chama a função de editar
-        document.getElementById('forms').addEventListener('submit', function(event) {
-            editarLeilao(); 
-        });*/
+    // Previne o envio padrão do formulário e chama a função de editar
+    document.getElementById('forms').addEventListener('submit', function(event) {
+        event.preventDefault();
+        editarLeilao(); 
+    });
     </script>
 </body>
 

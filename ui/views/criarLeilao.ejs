@@ -56,7 +56,7 @@
 
                     <div class="mb-3">
                         <label for="productDescription">Descrição do Produto</label>
-                        <textarea class="form-control" name="descricao" id="description" rows="3"
+                        <textarea class="form-control" name="description" id="description" rows="3"
                             style="font-size: 12px;"></textarea>
                     </div>
 
@@ -97,14 +97,20 @@
       const response = await axios.post('http://localhost:8084/leiloes/new', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+        withCredentials: true
       });
+
+      alert('Leilão criado com sucesso!');
+      window.location.href = '/seusLeiloes'; // Altere para a URL para onde deseja redirecionar
+
     } catch (error) {
       console.error('Erro ao criar leilão:', error.message);
     }
   }
 
   document.getElementById('forms').addEventListener('submit', function(event) {
+    event.preventDefault();
     enviarLeilao(); 
   });
 </script>

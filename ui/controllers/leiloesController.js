@@ -5,12 +5,20 @@ const ApplicationController = require('./applicationController');
 const userV = user1;
 const activeUser = userV;
 const FormData = require('form-data');
+const multer = require('multer');
+
+const upload = multer({ 
+  // Armazena arquivos na memória temporariamente
+  storage: multer.memoryStorage(), 
+  limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+}).array('images', 3);
+
 
 class LeiloesController extends ApplicationController {
 
   async index(req, res) {
     try {
-      let response = await axios.get("http://localhost:8084/");
+      let response = await axios.get("http://localhost:8084/Leiloes");
       let jsonRes = response.data;
       const current_user = super.define_user(res)
       res.render("leiloes", {
@@ -62,33 +70,30 @@ class LeiloesController extends ApplicationController {
   }
 
   async update(req, res) {
-    const session_token = req.cookies["session_token"];
-    let params = req.body;
     let files = req.files
     const formData = new FormData();
 
-    for (const key in req.body) {
-        formData.append(key, req.body[key]);
-    }
+    req.files.forEach((file) => {
+      formData.append('images', file.buffer, file.originalname);
+  });
 
-    for (const file of req.files) {
-        formData.append("images", file.buffer, { filename: file.originalname }); // Se você estiver usando multer com buffer
-    }
-
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
+  for (let key in req.body) {
+    formData.append(key, req.body[key]);
   }
 
     try {
       const auctionId = req.params.id;
-      let response = await axios.put(
+      const response = await axios.post(
         `http://localhost:8084/leiloes/${auctionId}`,
         formData,
         {
           headers: { 
-            'Cookie': `${session_token}`,
+            'Content-Type': 'multipart/form-data',
+            ...formData.getHeaders(),
           },
-          params: params
+          transformRequest: [
+            (formData) => formData,
+    ]
         }
       );
       let jsonRes = response.data;
@@ -103,7 +108,7 @@ class LeiloesController extends ApplicationController {
       const auctionId = req.params.id;
       const current_user = super.define_user(res)
       const session_token = req.cookies["session_token"];
-      let response = await axios.get(`http://localhost:8084/users/${auctionId}`, {
+      let response = await axios.get(`http://localhost:8084/leiloes/${auctionId}`, {
         headers: {
           'Cookie': `session_token=${session_token}`
         }
@@ -121,9 +126,11 @@ class LeiloesController extends ApplicationController {
 
   async delete(req, res) {
     try {
+      console.log('tentando deletar')
       const session_token = req.cookies["session_token"];
       const current_user = super.define_user(res)
       const auctionId = req.params.id;
+      console.log(auctionId)
       let response = await axios.delete(
         `http://localhost:8084/leiloes/${auctionId}`,
         {headers: { 'Cookie': `session_token=${session_token}` }},

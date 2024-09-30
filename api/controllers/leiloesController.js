@@ -39,7 +39,7 @@ class LeiloesController extends ApplicationController {
   async create(req, res) {
     const params = req.body;
 
-    let images = req.body.images || [];
+    let images = req.files.map(file => file.filename) || [];
 
     try {
       let auctionDetails = {
@@ -82,14 +82,16 @@ class LeiloesController extends ApplicationController {
   }
 
   async update(req, res) {
-    const params = req.body.params
+    const params = req.body
     let auction = Auction.find(req.params.id);
-    let images = params.images || [];
+    let images = req.files.map(file => file.filename) || [];
+    console.log(params)
+    console.log(req)
 
     try {
       let auctionDetails = {
         endDate: params.endDate,
-        reservedPrice: params.reservedPrice,
+        reservedPrice: auction.reservedPrice,
       };
       let highestBid = null;
       auction.update({
@@ -97,8 +99,8 @@ class LeiloesController extends ApplicationController {
         conservation: params.conservation,
         description: params.description,
         category: params.category,
-        location: params.location,
-        tags: params.tags,
+        location: auction.location,
+        tags: auction.tags,
         highestBid: highestBid,
         auctionDetails: auctionDetails,
         images: images,

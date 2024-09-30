@@ -4,8 +4,6 @@ const HomeController = require("../controllers/homeController.js");
 const LeiloesController = require("../controllers/leiloesController.js");
 const AdminController = require('../controllers/adminController.js');
 
-const upload = multer();
-
 /*
 const AuctionController = require('../controllers/auctionController')
 
@@ -14,6 +12,12 @@ const UserController = require('../controllers/userController') */
 const axios = require("axios").default;
 
 const router = express.Router();
+
+const upload = multer({ 
+  // Armazena arquivos na memória temporariamente
+  storage: multer.memoryStorage(), 
+  limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+}).array('file', 3);
 
 async function authenticate(req, res, next) {
   const session_token = req.cookies["session_token"];
@@ -71,10 +75,10 @@ router.get("/seusLeiloes", LeiloesController.yourAuctionsJSON);
 router.get("/leiloes", LeiloesController.index);
 router.get("/leilao/:id", LeiloesController.show);
 router.get("/leiloes/new", LeiloesController.index_criaoleilao);
-router.post("/leiloes/new", upload.array("images", 3), LeiloesController.create);
+router.post("/leiloes/new", upload, LeiloesController.create);
 
 router.get("/leilao/:id/editar", LeiloesController.edit);
-router.post("/leiloes/:id", upload.array("images", 3), LeiloesController.update);
+router.post("/leiloes/:id", upload, LeiloesController.update)
 router.post("/leilao/:id/deletar", LeiloesController.delete);
 
 router.get('/login', verify_user_logged, HomeController.login_page)
